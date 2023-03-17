@@ -17,6 +17,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF3EFF5),
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -45,17 +46,18 @@ class Login extends StatelessWidget {
                       ),
                       CustomText(
                         text: 'Login',
-                        fontSize: 18.sp,
-                        weight: FontWeight.w600,
+                        fontSize: 19.sp,
+                        weight: FontWeight.w800,
                       ),
                       SizedBox(
-                        height: 2.h,
+                        height: 1.7.h,
                       ),
-                      CustomText(text: 'Email'),
-                      SizedBox(
-                        height: 1.h,
-                      ),
+                      // CustomText(text: 'Email'),
+                      // SizedBox(
+                      //   height: 0.7.h,
+                      // ),
                       CustomTextField(
+                        hintText: 'Email',
                         controller: emailController,
                         prefix: Icon(
                           Icons.email_outlined,
@@ -74,12 +76,13 @@ class Login extends StatelessWidget {
                       SizedBox(
                         height: 1.h,
                       ),
-                      CustomText(text: 'Password'),
-                      SizedBox(
-                        height: 1.h,
-                      ),
+                      // CustomText(text: 'Password'),
+                      // SizedBox(
+                      //   height: 0.7.h,
+                      // ),
                       CustomTextField(
                         isPass: true,
+                        hintText: 'Password',
                         controller: passwordController,
                         prefix: Icon(
                           Icons.lock_outline_sharp,
@@ -111,6 +114,7 @@ class Login extends StatelessWidget {
                         children: [
                           CustomText(
                             text: 'Haven\'t signed up yet? ',
+                            color: Colors.grey[600],
                           ),
                           GestureDetector(
                             onTap: () {
@@ -157,7 +161,7 @@ class LoginButton extends StatelessWidget {
               backgroundColor: MaterialStateProperty.all(color),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24)))),
+                      borderRadius: BorderRadius.circular(8)))),
           onPressed: onTap,
           child: CustomText(
             text: text,

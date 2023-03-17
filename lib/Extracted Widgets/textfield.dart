@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  final controller, maxLines, validator, prefix, isPass;
+  final controller, maxLines, validator, prefix, isPass,hintText;
   const CustomTextField({
     Key? key,
     required this.controller,
@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.prefix,
     this.isPass = false,
+    this.hintText
   }) : super(key: key);
 
   @override
@@ -29,6 +30,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         maxLines: widget.maxLines,
         obscureText: widget.isPass ? (isHidden ? true : false) : false,
         decoration: InputDecoration(
+          hintText: widget.hintText,
             prefixIcon: widget.prefix,
             suffixIcon: widget.isPass == false
                 ? null
@@ -44,17 +46,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     )),
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: Colors.grey, width: 1)),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(color: Colors.blue, width: 1)),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: Colors.red, width: 1),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: Colors.blue, width: 1),
             )),
       ),

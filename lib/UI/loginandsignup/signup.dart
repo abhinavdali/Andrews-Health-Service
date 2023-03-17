@@ -40,13 +40,8 @@ class SignUp extends StatelessWidget {
                     SizedBox(
                       height: 2.h,
                     ),
-                    CustomText(
-                      text: 'Full Name',
-                    ),
-                    SizedBox(
-                      height: 0.7.h,
-                    ),
                     CustomTextField(
+                      hintText: 'Full Name',
                       controller: fullNameController,
                       prefix: Icon(
                         Icons.person_outline_outlined,
@@ -54,45 +49,30 @@ class SignUp extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 0.7.h,
-                    ),
-                    CustomText(
-                      text: 'Email',
-                    ),
-                    SizedBox(
-                      height: 0.7.h,
+                      height: 1.3.h,
                     ),
                     CustomTextField(
+                        hintText: 'Email',
                         prefix: Icon(
                           Icons.email_outlined,
                           size: 20,
                         ),
                         controller: emailController),
                     SizedBox(
-                      height: 0.7.h,
-                    ),
-                    CustomText(
-                      text: 'Phone Number',
-                    ),
-                    SizedBox(
-                      height: 0.7.h,
+                      height: 1.3.h,
                     ),
                     CustomTextField(
+                        hintText: 'Phone Number',
                         prefix: Icon(
                           Icons.phone_outlined,
                           size: 20,
                         ),
                         controller: phoneController),
                     SizedBox(
-                      height: 0.7.h,
-                    ),
-                    CustomText(
-                      text: 'Password',
-                    ),
-                    SizedBox(
-                      height: 0.7.h,
+                      height: 1.3.h,
                     ),
                     CustomTextField(
+                      hintText: 'Password',
                       prefix: Icon(
                         Icons.lock_outline,
                         size: 20,
@@ -101,15 +81,10 @@ class SignUp extends StatelessWidget {
                       isPass: true,
                     ),
                     SizedBox(
-                      height: 0.7.h,
-                    ),
-                    CustomText(
-                      text: 'Confirm Password',
-                    ),
-                    SizedBox(
-                      height: 0.7.h,
+                      height: 1.3.h,
                     ),
                     CustomTextField(
+                      hintText: 'Confirm Password',
                       prefix: Icon(
                         Icons.lock_outline,
                         size: 20,
@@ -135,7 +110,7 @@ class SignUp extends StatelessWidget {
                         GestureDetector(
                             onTap: () {},
                             child: CustomText(
-                              text: 'Log In',
+                              text: ' Log In',
                               color: Colors.blue,
                             ))
                       ],
