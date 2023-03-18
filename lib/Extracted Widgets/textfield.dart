@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatefulWidget {
-  final controller, maxLines, validator, prefix, isPass,hintText;
+  final controller, maxLines, validator, prefix, isPass,hintText,textInputAction,keyboardType;
   const CustomTextField({
     Key? key,
     required this.controller,
@@ -10,7 +10,9 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.prefix,
     this.isPass = false,
-    this.hintText
+    this.hintText,
+    this.textInputAction,
+    this.keyboardType
   }) : super(key: key);
 
   @override
@@ -25,6 +27,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return SizedBox(
       // height: MediaQuery.of(context).size.height * 0.055,
       child: TextFormField(
+        textInputAction: widget.textInputAction,
+        keyboardType: widget.keyboardType,
         controller: widget.controller,
         validator: widget.validator,
         maxLines: widget.maxLines,

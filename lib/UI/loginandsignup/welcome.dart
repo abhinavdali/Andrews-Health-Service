@@ -59,7 +59,7 @@ class Welcome extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 24),
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
                       color: Colors.grey.withOpacity(0.4),
@@ -82,7 +82,7 @@ class Welcome extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 24),
             width: double.infinity,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
                       color: Colors.grey.withOpacity(0.4),
