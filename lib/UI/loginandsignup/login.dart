@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fyp/SharedPreference/sharedPreference.dart';
+import 'package:fyp/UI/Screens/botnav.dart';
 import 'package:fyp/UI/loginandsignup/signup.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,9 +11,7 @@ import '../../Logic/Login_bloc/login_bloc.dart';
 import '../Screens/dashboard.dart';
 
 class Login extends StatelessWidget {
-  Login
-
-  ({super.key});
+  Login({super.key});
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -25,35 +25,43 @@ class Login extends StatelessWidget {
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           // TODO: implement listener}
-          if(state is LoginLoaded){
+          if (state is LoginLoaded) {
             print('success');
-            if(state.loginModel.token.isNotEmpty){
-              Navigator.push(context, MaterialPageRoute(builder: (context){return Dashboard();}));
+            if (state.loginModel.token.isNotEmpty) {
+              UserPreferences.setToken(state.loginModel.token);
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return BottomBar();
+              }));
+              // Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //   return Dashboard();
+              // }));
             }
           }
-          if(state is LoginLoading){
-            
+          if (state is LoginLoading) {
             showDialog(
                 barrierDismissible: false,
                 barrierColor: Colors.grey.withOpacity(0.2),
-                context: context, builder: (builder){
-              
-              return AlertDialog(
-                content: Container(
-                  height: 100,
-                  width: 200,
-                  child: Column(
-                    children: [
-                      CustomText(text: 'Please Wait'),
-                      SizedBox(height: 2.h,),
-                      CircularProgressIndicator()
-                    ],
-                  ),
-                ),
-              );
-            });
+                context: context,
+                builder: (builder) {
+                  return AlertDialog(
+                    content: Container(
+                      height: 100,
+                      width: 200,
+                      child: Column(
+                        children: [
+                          CustomText(text: 'Please Wait'),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          CircularProgressIndicator()
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }
-          if(state is LoginError){
+          if (state is LoginError) {
             Navigator.pop(context);
             print('fail');
           }
@@ -107,7 +115,7 @@ class Login extends StatelessWidget {
                             if (emailController.text.isEmpty) {
                               return 'Please enter an email';
                             } else if (!RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(emailController.text)) {
                               return 'Please enter a valid email address';
                             }
@@ -162,8 +170,8 @@ class Login extends StatelessWidget {
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                      return SignUp();
-                                    }));
+                                  return SignUp();
+                                }));
                               },
                               child: CustomText(
                                 text: 'Sign Up',
@@ -187,11 +195,12 @@ class Login extends StatelessWidget {
 class LoginButton extends StatelessWidget {
   final color, text, onTap, textColor;
 
-  const LoginButton({Key? key,
-    required this.text,
-    required this.color,
-    required this.onTap,
-    this.textColor = Colors.white})
+  const LoginButton(
+      {Key? key,
+      required this.text,
+      required this.color,
+      required this.onTap,
+      this.textColor = Colors.white})
       : super(key: key);
 
   @override

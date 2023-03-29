@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
 import 'package:fyp/UI/loginandsignup/welcome.dart';
+import 'package:fyp/splashscreen.dart';
 import 'package:sizer/sizer.dart';
 
 import 'Logic/Login_bloc/login_bloc.dart';
@@ -27,11 +28,11 @@ class MyApp extends StatelessWidget {
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],
-      child:  Sizer(builder: (context, orientation, deviceType) {
+      child: Sizer(builder: (context, orientation, deviceType) {
         return const MaterialApp(
             debugShowCheckedModeBanner: false,
             home: Scaffold(
-              body: Welcome(),
+              body: SplashScreen(),
             ));
       }),
     );
