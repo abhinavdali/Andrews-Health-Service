@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fyp/SharedPreference/sharedPreference.dart';
 import 'package:fyp/UI/Screens/dashboard.dart';
+import 'package:fyp/UI/loginandsignup/welcome.dart';
 import 'package:sizer/sizer.dart';
 
 import 'UI/Screens/botnav.dart';
 import 'UI/loginandsignup/login.dart';
+
+String? finalToken;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,16 +22,24 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
-      print(UserPreferences.getToken());
+    getValidation().whenComplete(() => Timer(Duration(seconds: 3), () {
+          finalToken == null
+              ? Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) {
+                  return Welcome();
+                }), (route) => false)
+              : Navigator.pushAndRemoveUntil(context,
+                  MaterialPageRoute(builder: (context) {
+                  return BottomBar();
+                }), (route) => false);
+        }));
+  }
 
-      UserPreferences.getToken() != null
-          ? Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return Login();
-            }))
-          : Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return BottomBar();
-            }));
+  Future getValidation() async {
+    var token = await UserPreferences.getToken();
+    print(token);
+    setState(() {
+      finalToken = token;
     });
   }
 

@@ -5,6 +5,7 @@ import 'package:fyp/UI/Screens/botnav.dart';
 import 'package:fyp/UI/loginandsignup/signup.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../Extracted Widgets/const.dart';
 import '../../Extracted Widgets/custom_text.dart';
 import '../../Extracted Widgets/textfield.dart';
 import '../../Logic/Login_bloc/login_bloc.dart';
@@ -21,18 +22,21 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF3EFF5),
+      backgroundColor: kColorGrey,
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           // TODO: implement listener}
           if (state is LoginLoaded) {
             print('success');
             if (state.loginModel.token.isNotEmpty) {
+              print(state.loginModel.token);
               UserPreferences.setToken(state.loginModel.token);
+
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
                 return BottomBar();
               }));
+
               // Navigator.push(context, MaterialPageRoute(builder: (context) {
               //   return Dashboard();
               // }));

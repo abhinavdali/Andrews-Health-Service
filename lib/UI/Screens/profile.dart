@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/SharedPreference/sharedPreference.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Extracted Widgets/custom_text.dart';
+import '../loginandsignup/login.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -94,9 +96,19 @@ class _ProfileState extends State<Profile> {
                                     SizedBox(
                                       width: 16,
                                     ),
-                                    CustomText(
-                                      text: 'Yes',
-                                      color: Colors.blue,
+                                    GestureDetector(
+                                      onTap: () {
+                                        UserPreferences.logout();
+                                        Navigator.pushAndRemoveUntil(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return Login();
+                                        }), (route) => false);
+                                      },
+                                      child: CustomText(
+                                        text: 'Yes',
+                                        color: Colors.blue,
+                                      ),
                                     ),
                                   ],
                                 ),

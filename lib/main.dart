@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fyp/Logic/Pharmacy_bloc/bloc/pharmacy_bloc.dart';
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
 import 'package:fyp/UI/loginandsignup/welcome.dart';
 import 'package:fyp/splashscreen.dart';
@@ -8,8 +9,13 @@ import 'package:sizer/sizer.dart';
 import 'Logic/Login_bloc/login_bloc.dart';
 import 'Services/Data Provider/apiRepository.dart';
 import 'Services/Data Provider/data_provider.dart';
+import 'SharedPreference/sharedPreference.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await UserPreferences.init();
+
   runApp(const MyApp());
 }
 
@@ -25,6 +31,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SignUpBloc>(
           create: (BuildContext context) => SignUpBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<PharmacyBloc>(
+          create: (BuildContext context) => PharmacyBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],

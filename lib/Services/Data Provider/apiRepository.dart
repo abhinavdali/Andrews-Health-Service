@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
@@ -7,10 +5,10 @@ import 'package:fyp/Services/Model/signup_model.dart';
 import 'package:http/http.dart';
 
 import '../Model/login_model.dart';
+import '../Model/pharmacy_model.dart';
 import 'data_provider.dart';
 
-class ApiRepository{
-
+class ApiRepository {
   final DataProvider dataService;
   ApiRepository({
     required this.dataService,
@@ -39,8 +37,8 @@ class ApiRepository{
     var loginModel;
 
     loginModel = await LoginModel.fromJson(await responseBody(
-        response: await dataService.login(
-            email: username, password: password)));
+        response:
+            await dataService.login(email: username, password: password)));
     return loginModel;
   }
 
@@ -55,7 +53,19 @@ class ApiRepository{
 
     loginModel = await SignUpModel.fromJson(await responseBody(
         response: await dataService.signup(
-            email: email,fName: fName,lName: lName,phone: phone, password: password)));
+            email: email,
+            fName: fName,
+            lName: lName,
+            phone: phone,
+            password: password)));
     return loginModel;
+  }
+
+  Future<PharmacyModel> getPharmacy() async {
+    var pharmacyModel;
+
+    pharmacyModel = await PharmacyModel.fromJson(
+        await responseBody(response: await dataService.getPharmacy()));
+    return pharmacyModel;
   }
 }

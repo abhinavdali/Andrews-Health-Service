@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
+import 'package:fyp/UI/Services/pharmacy.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../Extracted Widgets/const.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -110,6 +113,12 @@ class Dashboard extends StatelessWidget {
                               icon: 'assets/images/pharmacy.png',
                               title: 'Pharmacy',
                               scale: 1.5,
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return Pharmacy();
+                                }));
+                              },
                             ),
                             SizedBox(
                               width: 4.w,
@@ -134,46 +143,46 @@ class Dashboard extends StatelessWidget {
 }
 
 class ServicesWidget extends StatelessWidget {
-  final icon, title, scale;
-  const ServicesWidget({Key? key, this.icon, this.title, this.scale})
+  final icon, title, scale, onTap;
+  const ServicesWidget(
+      {Key? key, this.icon, this.title, this.scale, this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 12.h,
-      width: 26.w,
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      decoration: BoxDecoration(
-          gradient: RadialGradient(
-              colors: [Colors.blue.shade200, Colors.white], radius: 0.9
-              // begin: Alignment.bottomCenter,
-              // end: Alignment.topCenter
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 12.h,
+        width: 26.w,
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        decoration: BoxDecoration(
+            gradient: RadialGradient(
+                colors: [Colors.blue.shade200, Colors.white], radius: 0.9
+                // begin: Alignment.bottomCenter,
+                // end: Alignment.topCenter
+                ),
+            // color: Colors.blue.shade200.withOpacity(0.2),
+            border: Border.all(color: Colors.grey.withOpacity(0.4), width: 1),
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [shadow]),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                icon,
+                scale: scale,
               ),
-          // color: Colors.blue.shade200.withOpacity(0.2),
-          border: Border.all(color: Colors.grey.withOpacity(0.4), width: 1),
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 2,
-                blurRadius: 2)
-          ]),
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Image.asset(
-          icon,
-          scale: scale,
-        ),
-        SizedBox(
-          height: 1.h,
-        ),
-        CustomText(
-          text: title,
-          fontSize: 9.sp,
-          textAlign: TextAlign.center,
-        )
-      ]),
+              SizedBox(
+                height: 1.h,
+              ),
+              CustomText(
+                text: title,
+                fontSize: 9.sp,
+                textAlign: TextAlign.center,
+              )
+            ]),
+      ),
     );
   }
 }
