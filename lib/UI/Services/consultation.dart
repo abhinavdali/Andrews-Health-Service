@@ -54,57 +54,68 @@ class _ConsultationState extends State<Consultation> {
                           borderRadius: BorderRadius.circular(12)),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(12),
-                                bottomLeft: Radius.circular(12)),
-                            child: Image.network(
-                              'https://andrews-health-services-production.up.railway.app/uploads/${def[index].uploadedFile.path}',
-                              height: 16.h,
-                              width: 40.w,
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                CustomText(
-                                  text: 'Dr. ${def[index].name}',
-                                  weight: FontWeight.w600,
-                                  fontSize: 13.sp,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12),
+                                    bottomLeft: Radius.circular(12)),
+                                child: Image.network(
+                                  'https://andrews-health-services-production.up.railway.app/uploads/${def[index].uploadedFile.path}',
+                                  height: 16.h,
+                                  width: 40.w,
+                                  fit: BoxFit.fitHeight,
                                 ),
-                                CustomText(
-                                    text:
-                                        '${def[index].designation} • ${def[index].education}'),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Row(
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Icon(
-                                      Icons.phone_outlined,
-                                      size: 15,
-                                    ),
-                                    CustomText(text: ' ${def[index].phone}'),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.schedule,
-                                      size: 15,
+                                    CustomText(
+                                      text: 'Dr. ${def[index].name}',
+                                      weight: FontWeight.w600,
+                                      fontSize: 13.sp,
                                     ),
                                     CustomText(
-                                      text: ' ${def[index].timing}',
+                                        text:
+                                            '${def[index].designation} • ${def[index].education}'),
+                                    SizedBox(
+                                      height: 1.h,
                                     ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.phone_outlined,
+                                          size: 15,
+                                        ),
+                                        CustomText(
+                                            text: ' ${def[index].phone}'),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.schedule,
+                                          size: 15,
+                                        ),
+                                        CustomText(
+                                          text: ' ${def[index].timing}',
+                                        ),
+                                      ],
+                                    )
                                   ],
-                                )
-                              ],
-                            ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0, right: 8),
+                            child: Icon(Icons.favorite_border_outlined),
                           )
                         ],
                       ),
