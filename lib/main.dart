@@ -6,6 +6,7 @@ import 'package:fyp/UI/loginandsignup/welcome.dart';
 import 'package:fyp/splashscreen.dart';
 import 'package:sizer/sizer.dart';
 
+import 'Logic/Doctor_bloc/bloc/doctor_bloc.dart';
 import 'Logic/Login_bloc/login_bloc.dart';
 import 'Services/Data Provider/apiRepository.dart';
 import 'Services/Data Provider/data_provider.dart';
@@ -35,6 +36,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<PharmacyBloc>(
           create: (BuildContext context) => PharmacyBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<DoctorBloc>(
+          create: (BuildContext context) => DoctorBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],

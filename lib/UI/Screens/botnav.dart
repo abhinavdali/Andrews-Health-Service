@@ -76,7 +76,7 @@ class _BottomBarState extends State<BottomBar> {
                   ),
                   activeColor: Colors.purple),
               BottomNavyBarItem(
-                  icon: Icon(Icons.favorite_outlined),
+                  icon: Icon(Icons.favorite_border_outlined),
                   title: CustomText(
                     text: 'Favourite',
                     fontSize: 10.sp,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
+import 'package:fyp/UI/Services/consultation.dart';
 import 'package:fyp/UI/Services/pharmacy.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
@@ -98,6 +99,12 @@ class Dashboard extends StatelessWidget {
                             ServicesWidget(
                               icon: 'assets/images/doctor.png',
                               title: 'Consultation',
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return Consultation();
+                                }));
+                              },
                             ),
                             SizedBox(
                               width: 4.w,
