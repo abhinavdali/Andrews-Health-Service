@@ -1,8 +1,9 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/UI/Screens/dashboard.dart';
-import 'package:fyp/UI/Screens/schedule.dart';
-import 'package:fyp/UI/Screens/services.dart';
+import 'package:fyp/UI/Screens/appointment.dart';
+import 'package:fyp/UI/Screens/favourite.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../Extracted Widgets/custom_text.dart';
 import 'profile.dart';
@@ -17,7 +18,7 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _currentIndex = 0;
 
-  final _children = [Dashboard(), Schedule(), Services(), Profile()];
+  final _children = [Dashboard(), Appointment(), Favourites(), Profile()];
 
   void _onChanged(int index) {
     setState(() {
@@ -62,19 +63,31 @@ class _BottomBarState extends State<BottomBar> {
             items: [
               BottomNavyBarItem(
                   icon: Icon(Icons.home_outlined),
-                  title: CustomText(text: 'Home'),
+                  title: CustomText(
+                    text: 'Home',
+                    fontSize: 10.sp,
+                  ),
                   activeColor: Colors.blue),
               BottomNavyBarItem(
                   icon: Icon(Icons.schedule_outlined),
-                  title: CustomText(text: 'Schedule'),
+                  title: CustomText(
+                    text: 'Appointment',
+                    fontSize: 10.sp,
+                  ),
                   activeColor: Colors.purple),
               BottomNavyBarItem(
-                  icon: Icon(Icons.medical_services_outlined),
-                  title: CustomText(text: 'Services'),
+                  icon: Icon(Icons.favorite_outlined),
+                  title: CustomText(
+                    text: 'Favourite',
+                    fontSize: 10.sp,
+                  ),
                   activeColor: Colors.orange),
               BottomNavyBarItem(
                   icon: Icon(Icons.person_outline_rounded),
-                  title: CustomText(text: 'Profile'),
+                  title: CustomText(
+                    text: 'Profile',
+                    fontSize: 10.sp,
+                  ),
                   activeColor: Colors.green),
             ],
             onItemSelected: (index) {
