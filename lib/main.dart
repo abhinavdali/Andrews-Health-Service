@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Logic/Pharmacy_bloc/bloc/pharmacy_bloc.dart';
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
+import 'package:fyp/UI/Screens/appointment.dart';
 import 'package:fyp/UI/loginandsignup/welcome.dart';
 import 'package:fyp/splashscreen.dart';
 import 'package:sizer/sizer.dart';
 
+import 'Logic/Appointment_bloc/bloc/appointment_bloc.dart';
 import 'Logic/Doctor_bloc/bloc/doctor_bloc.dart';
 import 'Logic/Login_bloc/login_bloc.dart';
 import 'Services/Data Provider/apiRepository.dart';
@@ -40,6 +42,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DoctorBloc>(
           create: (BuildContext context) => DoctorBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<AppointmentBloc>(
+          create: (BuildContext context) => AppointmentBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],

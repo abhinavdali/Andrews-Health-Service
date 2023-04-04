@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
+import 'package:fyp/Services/Model/appointment_model.dart';
 import 'package:fyp/Services/Model/signup_model.dart';
 import 'package:http/http.dart';
 
@@ -74,6 +75,14 @@ class ApiRepository {
     var doctorModel;
 
     doctorModel = await DoctorModel.fromJson(
+        await responseBody(response: await dataService.getDoctor()));
+    return doctorModel;
+  }
+
+  Future<AppointmentModel> getAppointment() async {
+    var doctorModel;
+
+    doctorModel = await AppointmentModel.fromJson(
         await responseBody(response: await dataService.getDoctor()));
     return doctorModel;
   }

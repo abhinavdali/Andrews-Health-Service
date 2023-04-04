@@ -95,4 +95,23 @@ class DataProvider {
 
     return response;
   }
+
+  Future<http.Response> getAppointment() {
+    var response = http.get(
+      Uri.parse('$url/api/appointment'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
 }
