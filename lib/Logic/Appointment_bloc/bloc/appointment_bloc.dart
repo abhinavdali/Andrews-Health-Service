@@ -16,7 +16,10 @@ class AppointmentBloc extends Bloc<AppointmentEvent, AppointmentState> {
         emit(AppointmentLoading());
         var data = await apiRepository.getAppointment();
         emit(AppointmentLoaded(appointmentModel: data));
-      } catch (e) {}
+      } catch (e) {
+        print(e);
+        emit(AppointmentError());
+      }
     });
   }
 }

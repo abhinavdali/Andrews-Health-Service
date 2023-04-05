@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Extracted%20Widgets/const.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
 import 'package:fyp/Logic/Doctor_bloc/bloc/doctor_bloc.dart';
-import 'package:fyp/Services/Model/doctor_model.dart';
 import 'package:sizer/sizer.dart';
 
 class Consultation extends StatefulWidget {
@@ -16,7 +15,6 @@ class Consultation extends StatefulWidget {
 class _ConsultationState extends State<Consultation> {
   @override
   void initState() {
-    // TODO: implement initState
     BlocProvider.of<DoctorBloc>(context).add(OnDoctorLoad());
   }
 

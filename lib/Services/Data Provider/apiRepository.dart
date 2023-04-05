@@ -83,7 +83,7 @@ class ApiRepository {
     var doctorModel;
 
     doctorModel = await AppointmentModel.fromJson(
-        await responseBody(response: await dataService.getDoctor()));
+        await responseBody(response: await dataService.getAppointment()));
     return doctorModel;
   }
 }
