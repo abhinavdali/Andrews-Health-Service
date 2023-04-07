@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fyp/Extracted%20Widgets/const.dart';
 import 'package:fyp/Extracted%20Widgets/textfield.dart';
+import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Extracted Widgets/custom_text.dart';
@@ -39,13 +40,14 @@ class _CreateAppointmentState extends State<CreateAppointment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kColorGrey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: CustomText(
           text: 'Book Appoinment',
           weight: FontWeight.w600,
           color: Colors.white,
         ),
+        centerTitle: true,
         elevation: 0,
       ),
       body: ListView(
@@ -56,28 +58,30 @@ class _CreateAppointmentState extends State<CreateAppointment> {
             hintText: 'Name',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
+            onPress: () {},
+            enabled: false,
             controller: nameController,
             hintText: 'Doctor Name',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
             controller: nameController,
             hintText: 'Designation',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
             controller: nameController,
             hintText: "Phone Number",
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
             controller: nameController,
@@ -91,14 +95,14 @@ class _CreateAppointmentState extends State<CreateAppointment> {
             hintText: 'Age',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
             controller: nameController,
             hintText: 'City',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
             controller: nameController,
@@ -112,14 +116,14 @@ class _CreateAppointmentState extends State<CreateAppointment> {
             hintText: 'Instructions',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
             controller: nameController,
             hintText: 'Appointment Date',
           ),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           // EsewaPayButton(
           //   paymentConfig: ESewaConfig.dev(
@@ -152,8 +156,10 @@ class _CreateAppointmentState extends State<CreateAppointment> {
           //   Text('Console: Payment Success, Ref Id: $refId'),
           // if (hasError.isNotEmpty)
           //   Text('Console: Payment Failed, Message: $hasError'),
-          TextButton(
-              onPressed: () async {
+          LoginButton(
+              text: 'Pay with Esewa',
+              color: Colors.blue,
+              onTap: () async {
                 ESewaPayment _payment = ESewaPayment(
                     amount: 10.0,
                     productName: "TRY",
@@ -166,8 +172,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                 } on ESewaPaymentException catch (e) {
                   // Handle error
                 }
-              },
-              child: Text('ESEWA'))
+              })
         ],
       ),
     );

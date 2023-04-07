@@ -1,19 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 class CustomTextField extends StatefulWidget {
-  final controller, maxLines, validator, prefix, isPass,hintText,textInputAction,keyboardType;
-  const CustomTextField({
-    Key? key,
-    required this.controller,
-    this.maxLines = 1,
-    this.validator,
-    this.prefix,
-    this.isPass = false,
-    this.hintText,
-    this.textInputAction,
-    this.keyboardType
-  }) : super(key: key);
+  final controller,
+      maxLines,
+      validator,
+      prefix,
+      isPass,
+      hintText,
+      textInputAction,
+      keyboardType,
+      onPress,
+      enabled;
+  const CustomTextField(
+      {Key? key,
+      required this.controller,
+      this.enabled = true,
+      this.onPress,
+      this.maxLines = 1,
+      this.validator,
+      this.prefix,
+      this.isPass = false,
+      this.hintText,
+      this.textInputAction,
+      this.keyboardType})
+      : super(key: key);
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -26,16 +38,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
       // height: MediaQuery.of(context).size.height * 0.055,
-      child: TextFormField(
-        textInputAction: widget.textInputAction,
-        keyboardType: widget.keyboardType,
-        controller: widget.controller,
-        validator: widget.validator,
-        maxLines: widget.maxLines,
-        obscureText: widget.isPass ? (isHidden ? true : false) : false,
-        decoration: InputDecoration(
-          hintText: widget.hintText,
+      child: GestureDetector(
+        onTap: widget.onPress,
+        child: TextFormField(
+          enabled: widget.enabled,
+          textInputAction: widget.textInputAction,
+          keyboardType: widget.keyboardType,
+          controller: widget.controller,
+          validator: widget.validator,
+          maxLines: widget.maxLines,
+          obscureText: widget.isPass ? (isHidden ? true : false) : false,
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            filled: true,
+
+            fillColor: const Color(0xFFEDEDED),
             prefixIcon: widget.prefix,
+            hintStyle: TextStyle(fontSize: 10.sp),
             suffixIcon: widget.isPass == false
                 ? null
                 : GestureDetector(
@@ -49,20 +68,30 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       size: 20,
                     )),
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.grey, width: 1)),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide(color: Colors.blue, width: 1)),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.red, width: 1),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide.none,
             ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.blue, width: 1),
-            )),
+            // enabledBorder: OutlineInputBorder(
+            //     borderRadius: BorderRadius.circular(12),
+            //     borderSide: BorderSide(color: Colors.grey, width: 1)),
+            // focusedBorder: OutlineInputBorder(
+            //     borderRadius: BorderRadius.circular(12),
+            //     borderSide: BorderSide(color: Colors.blue, width: 1)),
+            // errorBorder: OutlineInputBorder(
+            //   borderRadius: BorderRadius.circular(12),
+            //   borderSide: BorderSide(color: Colors.red, width: 1),
+            // ),
+            // disabledBorder: OutlineInputBorder(
+            //   borderRadius: BorderRadius.circular(12),
+            //   borderSide: BorderSide(color: Colors.grey, width: 1),
+            // ),
+            // focusedErrorBorder: OutlineInputBorder(
+            //   borderRadius: BorderRadius.circular(12),
+            //   borderSide: BorderSide(color: Colors.blue, width: 1),
+            // )
+          ),
+        ),
       ),
     );
   }

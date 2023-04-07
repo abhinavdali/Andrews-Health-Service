@@ -91,7 +91,7 @@ class Dashboard extends StatelessWidget {
                         height: 1.h,
                       ),
                       SizedBox(
-                        height: 14.h,
+                        height: 15.h,
                         child: ListView(
                           padding: EdgeInsets.symmetric(vertical: 8),
                           scrollDirection: Axis.horizontal,

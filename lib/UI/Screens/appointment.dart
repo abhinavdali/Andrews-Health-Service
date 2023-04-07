@@ -51,11 +51,36 @@ class _AppointmentState extends State<Appointment> {
             );
           } else if (state is AppointmentLoaded) {
             var def = state.appointmentModel.appointment;
-            if (!def.isNotEmpty) {
+            if (def.isNotEmpty) {
               return ListView.builder(
                   itemCount: def.length,
                   itemBuilder: (context, i) {
-                    return Container();
+                    return Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [shadow],
+                      ),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomText(
+                              text: '${def[i].doctorName}',
+                              fontSize: 12.sp,
+                              weight: FontWeight.w600,
+                            ),
+                            CustomText(
+                              text: '${def[i].department}',
+                              fontSize: 9.sp,
+                            ),
+                            Row(children: [
+                              
+                            ],)
+                          ]),
+                    );
                   });
             } else {
               return Center(

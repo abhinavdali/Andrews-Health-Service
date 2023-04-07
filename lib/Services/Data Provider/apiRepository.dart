@@ -1,10 +1,7 @@
 import 'dart:convert';
-
-import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
 import 'package:fyp/Services/Model/appointment_model.dart';
 import 'package:fyp/Services/Model/signup_model.dart';
 import 'package:http/http.dart';
-
 import '../Model/doctor_model.dart';
 import '../Model/login_model.dart';
 import '../Model/pharmacy_model.dart';
