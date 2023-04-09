@@ -19,6 +19,16 @@ class CreateAppointment extends StatefulWidget {
 
 class _CreateAppointmentState extends State<CreateAppointment> {
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController genderController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController doctorController = TextEditingController();
+  final TextEditingController designationController = TextEditingController();
+  final TextEditingController instController = TextEditingController();
+  final TextEditingController appointmentController = TextEditingController();
+
   String refId = '';
   String hasError = '';
 
@@ -53,109 +63,102 @@ class _CreateAppointmentState extends State<CreateAppointment> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         children: [
+          CustomText(text: 'Patient Information',fontSize: 12.sp,weight: FontWeight.w600,),
+          SizedBox(height: 1.h,),
           CustomTextField(
             controller: nameController,
             hintText: 'Name',
           ),
+
           SizedBox(
             height: 1.2.h,
           ),
           CustomTextField(
-            onPress: () {},
-            enabled: false,
-            controller: nameController,
-            hintText: 'Doctor Name',
-          ),
-          SizedBox(
-            height: 1.2.h,
-          ),
-          CustomTextField(
-            controller: nameController,
-            hintText: 'Designation',
-          ),
-          SizedBox(
-            height: 1.2.h,
-          ),
-          CustomTextField(
-            controller: nameController,
+            controller: phoneController,
             hintText: "Phone Number",
           ),
           SizedBox(
             height: 1.2.h,
           ),
-          CustomTextField(
-            controller: nameController,
-            hintText: 'Gender',
-          ),
-          SizedBox(
-            height: 1.h,
-          ),
-          CustomTextField(
-            controller: nameController,
-            hintText: 'Age',
+          Row(
+            children: [
+              Expanded(
+                child: CustomTextField(
+                  controller: genderController,
+                  hintText: 'Gender',
+                ),
+              ),
+              SizedBox(width: 2.w,),
+              Expanded(
+                child: CustomTextField(
+                  controller: ageController,
+                  hintText: 'Age',
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 1.2.h,
           ),
-          CustomTextField(
-            controller: nameController,
-            hintText: 'City',
+          Row(
+            children: [
+
+              Expanded(
+                child: CustomTextField(
+                  controller: cityController,
+                  hintText: 'City',
+                ),
+              ),
+              SizedBox(
+                width: 2.w,
+              ),
+              Expanded(
+                child: CustomTextField(
+                  controller: addressController,
+                  hintText: 'Address',
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 1.2.h,
           ),
-          CustomTextField(
-            controller: nameController,
-            hintText: 'Address',
-          ),
+          CustomText(text: 'Doctor Information',fontSize: 12.sp,weight: FontWeight.w600,),
           SizedBox(
-            height: 1.h,
+            height: 1.2.h,
           ),
           CustomTextField(
-            controller: nameController,
+            onPress: (){},
+            enabled: false,
+            controller: doctorController,
+            hintText: 'Doctor Name',
+          ),  SizedBox(
+            height: 1.2.h,
+          ),
+          CustomTextField(
+            onPress: (){},
+            enabled: false,
+            controller: designationController,
+            hintText: 'Designation',
+          ),  SizedBox(
+            height: 1.2.h,
+          ),
+          CustomTextField(
+            controller: instController,
             hintText: 'Instructions',
           ),
           SizedBox(
             height: 1.2.h,
           ),
           CustomTextField(
-            controller: nameController,
+            onPress: (){},
+            enabled: false,
+            controller: appointmentController,
             hintText: 'Appointment Date',
           ),
           SizedBox(
             height: 1.2.h,
           ),
-          // EsewaPayButton(
-          //   paymentConfig: ESewaConfig.dev(
-          //       su: 'https://www.marvel.com/hello',
-          //       amt: 10,
-          //       fu: 'https://www.marvel.com/hello',
-          //       pid: '1212',
-          //       scd: 'EPAYTEST'),
-          //   width: 100,
-          //   onFailure: (result) async {
-          //     setState(() {
-          //       refId = '';
-          //       hasError = result;
-          //     });
-          //     if (kDebugMode) {
-          //       print(result);
-          //     }
-          //   },
-          //   onSuccess: (result) async {
-          //     setState(() {
-          //       hasError = '';
-          //       refId = result.refId!;
-          //     });
-          //     if (kDebugMode) {
-          //       print(result.toJson());
-          //     }
-          //   },
-          // ),
-          // if (refId.isNotEmpty)
-          //   Text('Console: Payment Success, Ref Id: $refId'),
-          // if (hasError.isNotEmpty)
-          //   Text('Console: Payment Failed, Message: $hasError'),
           LoginButton(
               text: 'Pay with Esewa',
               color: Colors.blue,
