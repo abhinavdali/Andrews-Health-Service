@@ -114,4 +114,45 @@ class DataProvider {
 
     return response;
   }
+
+  Future<http.Response> postAppointment(
+      String name,
+      String phone,
+      String gender,
+      String age,
+      String city,
+      String address,
+      String doctorName,
+      String designation,
+      String instructions,
+      String appointmentDate) {
+    var response = http
+        .post(Uri.parse('$url/api/appointment/create-appointment'),
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(<String, dynamic>{
+              "department": designation,
+              "doctorName": doctorName,
+              "patientName": name,
+              "phone": phone,
+              "gender": gender,
+              "age": age,
+              "city": city,
+              "address": address,
+              "instructions": instructions,
+              "appointmentDate": appointmentDate
+            }))
+        .timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
 }

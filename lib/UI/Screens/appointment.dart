@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Extracted%20Widgets/const.dart';
@@ -53,33 +54,102 @@ class _AppointmentState extends State<Appointment> {
             var def = state.appointmentModel.appointment;
             if (def.isNotEmpty) {
               return ListView.builder(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 16.0),
                   itemCount: def.length,
                   itemBuilder: (context, i) {
-                    return Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [shadow],
-                      ),
-                      child: Column(
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [shadow],
+                        ),
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomText(
-                              text: '${def[i].doctorName}',
-                              fontSize: 12.sp,
-                              weight: FontWeight.w600,
+                            CircleAvatar(
+                              radius: 25,
                             ),
-                            CustomText(
-                              text: '${def[i].department}',
-                              fontSize: 9.sp,
+                            SizedBox(
+                              width: 5.w,
                             ),
-                            Row(children: [
-                              
-                            ],)
-                          ]),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomText(
+                                    text: '${def[i].doctorName}',
+                                    fontSize: 12.sp,
+                                    weight: FontWeight.w600,
+                                  ),
+                                  CustomText(
+                                    text: '${def[i].department}',
+                                    fontSize: 9.sp,
+                                  ),
+                                  SizedBox(
+                                    height: 2.h,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            CupertinoIcons.calendar,
+                                            size: 17,
+                                          ),
+                                          SizedBox(
+                                            width: 1.w,
+                                          ),
+                                          CustomText(
+                                              fontSize: 9.sp,
+                                              text:
+                                                  '${def[i].appointmentDate.toString().substring(0, def[i].appointmentDate.toString().indexOf(' '))}')
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 0.3.h,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.healing_outlined,
+                                            size: 17,
+                                          ),
+                                          SizedBox(
+                                            width: 1.w,
+                                          ),
+                                          CustomText(
+                                              fontSize: 9.sp,
+                                              text: '${def[i].instructions}')
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 0.3.h,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.personal_injury_outlined,
+                                            size: 17,
+                                          ),
+                                          SizedBox(
+                                            width: 1.w,
+                                          ),
+                                          CustomText(
+                                              fontSize: 9.sp,
+                                              text: '${def[i].patientName}')
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                ]),
+                          ],
+                        ),
+                      ),
                     );
                   });
             } else {

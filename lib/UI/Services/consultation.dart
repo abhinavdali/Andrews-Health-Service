@@ -36,7 +36,8 @@ class _ConsultationState extends State<Consultation> {
           if (state is DoctorInitial) {
             print('init');
           } else if (state is DoctorLoading) {
-            return Center(child: CircularProgressIndicator.adaptive());
+            return Expanded(
+                child: Center(child: CircularProgressIndicator.adaptive()));
           } else if (state is DoctorLoaded) {
             var def = state.doctorModel.doctors;
             return Expanded(

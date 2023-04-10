@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fyp/Services/Model/appointment_model.dart';
+import 'package:fyp/Services/Model/create_appointment_model.dart';
 import 'package:fyp/Services/Model/signup_model.dart';
 import 'package:http/http.dart';
 import '../Model/doctor_model.dart';
@@ -81,6 +82,34 @@ class ApiRepository {
 
     doctorModel = await AppointmentModel.fromJson(
         await responseBody(response: await dataService.getAppointment()));
+    return doctorModel;
+  }
+
+  Future<CreateAppointmentModel> postAppointment(
+      String name,
+      String phone,
+      String gender,
+      String age,
+      String city,
+      String address,
+      String doctorName,
+      String designation,
+      String instructions,
+      String appointmentDate) async {
+    var doctorModel;
+
+    doctorModel = await CreateAppointmentModel.fromJson(await responseBody(
+        response: await dataService.postAppointment(
+            name,
+            phone,
+            gender,
+            age,
+            city,
+            address,
+            doctorName,
+            designation,
+            instructions,
+            appointmentDate)));
     return doctorModel;
   }
 }

@@ -59,7 +59,7 @@ class _PharmacyState extends State<Pharmacy> {
                         itemCount: def!.length,
                         shrinkWrap: true,
                         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          mainAxisExtent: 28.h,
+                          mainAxisExtent: 30.h,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16,
                           maxCrossAxisExtent: 280,

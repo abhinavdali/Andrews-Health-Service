@@ -1,5 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fyp/UI/Screens/dashboard.dart';
 import 'package:fyp/UI/Screens/appointment.dart';
 import 'package:fyp/UI/Screens/favourite.dart';
@@ -41,14 +42,20 @@ class _BottomBarState extends State<BottomBar> {
                   content: CustomText(text: 'Do you want to quit the app?'),
                   actions: [
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          SystemNavigator.pop();
+                        },
                         child: CustomText(
                           text: 'Yes',
+                          color: Colors.blue,
                         )),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         child: CustomText(
                           text: 'No',
+                          color: Colors.red,
                         )),
                   ],
                 );

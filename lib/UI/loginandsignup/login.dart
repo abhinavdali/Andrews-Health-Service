@@ -50,8 +50,8 @@ class Login extends StatelessWidget {
                 builder: (builder) {
                   return AlertDialog(
                     content: Container(
-                      height: 100,
-                      width: 200,
+                      height: 90,
+                      width: 170,
                       child: Column(
                         children: [
                           CustomText(text: 'Please Wait'),

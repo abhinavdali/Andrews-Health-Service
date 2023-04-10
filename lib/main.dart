@@ -8,6 +8,7 @@ import 'package:fyp/splashscreen.dart';
 import 'package:sizer/sizer.dart';
 
 import 'Logic/Appointment_bloc/bloc/appointment_bloc.dart';
+import 'Logic/CreateAppointment_bloc/bloc/create_appointment_bloc.dart';
 import 'Logic/Doctor_bloc/bloc/doctor_bloc.dart';
 import 'Logic/Login_bloc/login_bloc.dart';
 import 'Services/Data Provider/apiRepository.dart';
@@ -46,6 +47,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AppointmentBloc>(
           create: (BuildContext context) => AppointmentBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<CreateAppointmentBloc>(
+          create: (BuildContext context) => CreateAppointmentBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],

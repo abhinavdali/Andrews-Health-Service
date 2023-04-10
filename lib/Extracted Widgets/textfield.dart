@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 class CustomTextField extends StatefulWidget {
   final controller,
       maxLines,
+      maxLength,
       validator,
       prefix,
       isPass,
@@ -19,6 +20,7 @@ class CustomTextField extends StatefulWidget {
       this.enabled = true,
       this.onPress,
       this.maxLines = 1,
+      this.maxLength,
       this.validator,
       this.prefix,
       this.isPass = false,
@@ -42,19 +44,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onTap: widget.onPress,
         child: TextFormField(
           enabled: widget.enabled,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textInputAction: widget.textInputAction,
           keyboardType: widget.keyboardType,
           controller: widget.controller,
           validator: widget.validator,
+          maxLength: widget.maxLength,
           maxLines: widget.maxLines,
           obscureText: widget.isPass ? (isHidden ? true : false) : false,
           decoration: InputDecoration(
             hintText: widget.hintText,
+            counterText: '',
             filled: true,
 
             fillColor: const Color(0xFFEDEDED),
             prefixIcon: widget.prefix,
-            hintStyle: TextStyle(fontSize: 10.sp),
+            hintStyle: TextStyle(fontSize: 10.sp, color: Colors.grey.shade700),
             suffixIcon: widget.isPass == false
                 ? null
                 : GestureDetector(
