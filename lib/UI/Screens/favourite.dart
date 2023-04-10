@@ -15,6 +15,7 @@ class Favourites extends StatelessWidget {
           color: Colors.white,
           weight: FontWeight.w600,
         ),
+        backgroundColor: Colors.blue.shade300,
         centerTitle: true,
         elevation: 0,
       ),

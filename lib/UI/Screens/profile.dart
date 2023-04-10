@@ -25,6 +25,7 @@ class _ProfileState extends State<Profile> {
           color: Colors.white,
           weight: FontWeight.w600,
         ),
+        backgroundColor: Colors.blue.shade300,
         elevation: 0,
         centerTitle: true,
       ),

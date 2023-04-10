@@ -28,7 +28,7 @@ class _PharmacyState extends State<Pharmacy> {
       backgroundColor: kColorGrey,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        backgroundColor: Colors.blue.shade400,
+        backgroundColor: Colors.blue.shade300,
         title: CustomText(
           text: 'Pharmacy',
           color: Colors.white,

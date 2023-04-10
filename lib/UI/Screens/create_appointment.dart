@@ -69,6 +69,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade300,
         title: CustomText(
           text: 'Book Appoinment',
           weight: FontWeight.w700,

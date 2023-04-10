@@ -27,6 +27,7 @@ class _AppointmentState extends State<Appointment> {
     return Scaffold(
         backgroundColor: kColorGrey,
         appBar: AppBar(
+          backgroundColor: Colors.blue.shade300,
           title: CustomText(
             text: 'My Appoinments',
             color: Colors.white,
@@ -61,92 +62,110 @@ class _AppointmentState extends State<Appointment> {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12.0),
                       child: Container(
-                        padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [shadow],
                         ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              radius: 25,
-                            ),
-                            SizedBox(
-                              width: 5.w,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                            Container(
+                              padding: EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12),
+                                      topRight: Radius.circular(12))),
+                              child: Row(
                                 children: [
-                                  CustomText(
-                                    text: '${def[i].doctorName}',
-                                    fontSize: 12.sp,
-                                    weight: FontWeight.w600,
-                                  ),
-                                  CustomText(
-                                    text: '${def[i].department}',
-                                    fontSize: 9.sp,
+                                  Icon(
+                                    Icons.schedule,
+                                    color: Colors.white,
                                   ),
                                   SizedBox(
-                                    height: 2.h,
+                                    width: 2.w,
+                                  ),
+                                  CustomText(
+                                    fontSize: 10.sp,
+                                    text:
+                                        '${def[i].appointmentDate.toString().substring(0, def[i].appointmentDate.toString().indexOf(' '))}',
+                                    color: Colors.white,
+                                    weight: FontWeight.w700,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(12),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 25,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
                                   ),
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            CupertinoIcons.calendar,
-                                            size: 17,
-                                          ),
-                                          SizedBox(
-                                            width: 1.w,
-                                          ),
-                                          CustomText(
-                                              fontSize: 9.sp,
-                                              text:
-                                                  '${def[i].appointmentDate.toString().substring(0, def[i].appointmentDate.toString().indexOf(' '))}')
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 0.3.h,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.healing_outlined,
-                                            size: 17,
-                                          ),
-                                          SizedBox(
-                                            width: 1.w,
-                                          ),
-                                          CustomText(
-                                              fontSize: 9.sp,
-                                              text: '${def[i].instructions}')
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 0.3.h,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.personal_injury_outlined,
-                                            size: 17,
-                                          ),
-                                          SizedBox(
-                                            width: 1.w,
-                                          ),
-                                          CustomText(
-                                              fontSize: 9.sp,
-                                              text: '${def[i].patientName}')
-                                        ],
-                                      )
-                                    ],
-                                  )
-                                ]),
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CustomText(
+                                          text: '${def[i].doctorName}',
+                                          fontSize: 12.sp,
+                                          weight: FontWeight.w600,
+                                        ),
+                                        CustomText(
+                                          text: '${def[i].department}',
+                                          fontSize: 9.sp,
+                                        ),
+                                        SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.healing_outlined,
+                                                  size: 17,
+                                                ),
+                                                SizedBox(
+                                                  width: 1.w,
+                                                ),
+                                                CustomText(
+                                                    fontSize: 9.sp,
+                                                    text:
+                                                        '${def[i].instructions}')
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 0.3.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons
+                                                      .personal_injury_outlined,
+                                                  size: 17,
+                                                ),
+                                                SizedBox(
+                                                  width: 1.w,
+                                                ),
+                                                CustomText(
+                                                    fontSize: 9.sp,
+                                                    text:
+                                                        '${def[i].patientName}')
+                                              ],
+                                            )
+                                          ],
+                                        )
+                                      ]),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),

@@ -23,6 +23,7 @@ class _ConsultationState extends State<Consultation> {
     return Scaffold(
       backgroundColor: kColorGrey,
       appBar: AppBar(
+        backgroundColor: Colors.blue.shade300,
         centerTitle: true,
         title: CustomText(
           text: 'Consultation',
