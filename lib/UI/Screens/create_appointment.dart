@@ -1,4 +1,3 @@
-import 'package:esewa_flutter/esewa_flutter.dart';
 import 'package:esewa_pnp/esewa.dart';
 import 'package:esewa_pnp/esewa_pnp.dart';
 import 'package:flutter/cupertino.dart';
@@ -437,6 +436,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
               SizedBox(
                 height: 1.2.h,
               ),
+              ESewaPaymentButton(esewa, amount: amount, productId: productId, productName: productName, callBackURL: callBackURL, onSuccess: onSuccess, onFailure: onFailure)
               LoginButton(
                   text: 'Pay with Esewa',
                   color: Colors.blue,
