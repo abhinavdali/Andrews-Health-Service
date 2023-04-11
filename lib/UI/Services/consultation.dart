@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Extracted%20Widgets/const.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
 import 'package:fyp/Logic/Doctor_bloc/bloc/doctor_bloc.dart';
+import 'package:fyp/UI/Screens/doctor_profile.dart';
 import 'package:sizer/sizer.dart';
 
 class Consultation extends StatefulWidget {
@@ -28,7 +29,7 @@ class _ConsultationState extends State<Consultation> {
         title: CustomText(
           text: 'Consultation',
           color: Colors.white,
-          weight: FontWeight.w600,
+          weight: FontWeight.w700,
         ),
         elevation: 0,
       ),
@@ -47,77 +48,87 @@ class _ConsultationState extends State<Consultation> {
                   shrinkWrap: true,
                   itemCount: def.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [shadow],
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(12),
-                                    bottomLeft: Radius.circular(12)),
-                                child: Image.network(
-                                  'https://andrews-health-services-production.up.railway.app/uploads/${def[index].uploadedFile.path}',
-                                  height: 16.h,
-                                  width: 40.w,
-                                  fit: BoxFit.fitHeight,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return DoctorProfile();
+                        }));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: [shadow],
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12),
+                                      bottomLeft: Radius.circular(12)),
+                                  child: Image.network(
+                                    'https://andrews-health-services-production.up.railway.app/uploads/${def[index].uploadedFile.path}',
+                                    height: 16.h,
+                                    width: 40.w,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    CustomText(
-                                      text: 'Dr. ${def[index].name}',
-                                      weight: FontWeight.w600,
-                                      fontSize: 13.sp,
-                                    ),
-                                    CustomText(
-                                        text:
-                                            '${def[index].designation} • ${def[index].education}'),
-                                    SizedBox(
-                                      height: 1.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.phone_outlined,
-                                          size: 15,
-                                        ),
-                                        CustomText(
-                                            text: ' ${def[index].phone}'),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.schedule,
-                                          size: 15,
-                                        ),
-                                        CustomText(
-                                          text: ' ${def[index].timing}',
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0, right: 8),
-                            child: Icon(Icons.favorite_border_outlined),
-                          )
-                        ],
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      CustomText(
+                                        text: 'Dr. ${def[index].name}',
+                                        weight: FontWeight.w600,
+                                        fontSize: 13.sp,
+                                      ),
+                                      CustomText(
+                                          text:
+                                              '${def[index].designation} • ${def[index].education}'),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.phone_outlined,
+                                            size: 15,
+                                          ),
+                                          CustomText(
+                                              text: ' ${def[index].phone}'),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.schedule,
+                                            size: 15,
+                                          ),
+                                          CustomText(
+                                            text: ' ${def[index].timing}',
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 8.0, right: 8),
+                              child: Icon(Icons.favorite_border_outlined),
+                            )
+                          ],
+                        ),
                       ),
                     );
                   }),
