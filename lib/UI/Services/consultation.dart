@@ -52,7 +52,10 @@ class _ConsultationState extends State<Consultation> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return DoctorProfile();
+                          return DoctorProfile(
+                              name: def[index].name,
+                              designation: def[index].designation,
+                              available: def[index].timing);
                         }));
                       },
                       child: Container(

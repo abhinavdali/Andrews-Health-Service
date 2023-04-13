@@ -45,7 +45,7 @@ dependencies:
   shared_preferences: ^2.0.20
   esewa_flutter: ^1.1.2
   esewa_pnp: ^2.0.1
-  modal_bottom_sheet: ^2.1.2
+  modal_bottom_sheet: ^3.0.0-pre
 
 
 dev_dependencies:
