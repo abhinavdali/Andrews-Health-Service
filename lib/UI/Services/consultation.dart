@@ -99,10 +99,10 @@ class _ConsultationState extends State<Consultation> {
                                         topLeft: Radius.circular(12),
                                         bottomLeft: Radius.circular(12)),
                                     child: Image.network(
-                                      'https://andrew-dipeshshtha4.b4a.run/uploads/${def[index].uploadedFile.path}',
+                                      'https://andrews-dipeshshtha4.b4a.run/uploads/${def[index].uploadedFile.path}',
                                       height: 16.h,
                                       width: 40.w,
-                                      fit: BoxFit.fitHeight,
+                                      fit: BoxFit.fitWidth,
                                       errorBuilder: (BuildContext context,
                                           Object exception,
                                           StackTrace? stackTrace) {

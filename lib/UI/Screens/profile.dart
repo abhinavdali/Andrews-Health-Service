@@ -34,9 +34,7 @@ class _ProfileState extends State<Profile> {
         SizedBox(
           height: 3.h,
         ),
-        CircleAvatar(
-          radius: 50,
-        ),
+        ClipOval(child: Image.asset('assets/images/profile.jpg',height: 80,width: 80,)),
         SizedBox(
           height: 1.h,
         ),
@@ -63,6 +61,10 @@ class _ProfileState extends State<Profile> {
                 });
               }),
         ),
+
+        ProfileRow(icon: Icons.feedback_outlined, title: 'Feedback',            widget: SizedBox(),
+        ),        SizedBox(height: 1.h,),
+
         GestureDetector(
           onTap: () {
             showDialog(
@@ -126,22 +128,25 @@ class _ProfileState extends State<Profile> {
                   );
                 });
           },
+
           child: ProfileRow(
             icon: Icons.logout,
             title: 'Logout',
+            islogout: true,
             widget: SizedBox(),
           ),
-        )
+        ),
+
       ]),
     );
   }
 }
 
 class ProfileRow extends StatelessWidget {
-  final icon, title;
+  final icon, title,islogout;
   final Widget? widget;
   const ProfileRow(
-      {Key? key, required this.icon, required this.title, this.widget})
+      {Key? key, required this.icon, required this.title,this.islogout = false, this.widget})
       : super(key: key);
 
   @override
@@ -155,7 +160,7 @@ class ProfileRow extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: Colors.blue,
+                color:islogout == true? Colors.red: Colors.blue,
               ),
               SizedBox(
                 width: 8,
@@ -163,6 +168,7 @@ class ProfileRow extends StatelessWidget {
               CustomText(
                 text: title,
                 fontSize: 11.sp,
+                color: islogout == true? Colors.red: Colors.black,
                 weight: FontWeight.w500,
               ),
             ],

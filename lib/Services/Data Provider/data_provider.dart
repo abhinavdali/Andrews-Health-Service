@@ -4,7 +4,7 @@ import 'package:fyp/SharedPreference/sharedPreference.dart';
 import 'package:http/http.dart' as http;
 
 class DataProvider {
-  var url = 'https://andrew-dipeshshtha4.b4a.run';
+  var url = 'https://andrews-dipeshshtha4.b4a.run/';
   var token = UserPreferences.getToken();
 
   Future<http.Response> login(

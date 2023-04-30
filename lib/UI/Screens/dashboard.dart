@@ -152,7 +152,6 @@ class Dashboard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      CustomText(text: 'Schedule')
                     ]),
               ),
             )
