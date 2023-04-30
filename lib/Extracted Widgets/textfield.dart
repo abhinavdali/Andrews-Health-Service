@@ -12,7 +12,8 @@ class CustomTextField extends StatefulWidget {
       hintText,
       textInputAction,
       keyboardType,
-      onPress,
+      onPress,fillColor,
+      onChange,
       enabled;
   const CustomTextField(
       {Key? key,
@@ -25,6 +26,8 @@ class CustomTextField extends StatefulWidget {
       this.prefix,
       this.isPass = false,
       this.hintText,
+        this.onChange,
+        this.fillColor =const  Color(0xFFEDEDED),
       this.textInputAction,
       this.keyboardType})
       : super(key: key);
@@ -44,6 +47,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onTap: widget.onPress,
         child: TextFormField(
           enabled: widget.enabled,
+          onChanged: widget.onChange,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           textInputAction: widget.textInputAction,
           keyboardType: widget.keyboardType,
@@ -57,7 +61,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             counterText: '',
             filled: true,
 
-            fillColor: const Color(0xFFEDEDED),
+            fillColor: widget.fillColor,
             prefixIcon: widget.prefix,
             hintStyle: TextStyle(fontSize: 10.sp, color: Colors.grey.shade700),
             suffixIcon: widget.isPass == false

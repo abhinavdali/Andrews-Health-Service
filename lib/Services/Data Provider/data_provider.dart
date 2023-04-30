@@ -4,7 +4,7 @@ import 'package:fyp/SharedPreference/sharedPreference.dart';
 import 'package:http/http.dart' as http;
 
 class DataProvider {
-  var url = 'https://andrews-health-services-production.up.railway.app';
+  var url = 'https://andrew-dipeshshtha4.b4a.run';
   var token = UserPreferences.getToken();
 
   Future<http.Response> login(
@@ -76,6 +76,64 @@ class DataProvider {
 
     return response;
   }
+
+  Future<http.Response> postFavourites(String id) {
+    var response = http.post(
+      Uri.parse('$url/api/doctor/favourite-doctor/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
+  Future<http.Response> getFavourites() {
+    var response = http.get(
+      Uri.parse('$url/api/doctor/favourite'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
+  Future<http.Response> getServices() {
+    var response = http.get(
+      Uri.parse('$url/api/services/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
 
   Future<http.Response> getDoctor() {
     var response = http.get(

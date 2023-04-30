@@ -4,6 +4,7 @@ import 'package:fyp/Extracted%20Widgets/custom_text.dart';
 import 'package:fyp/UI/Screens/appointment.dart';
 import 'package:fyp/UI/Services/consultation.dart';
 import 'package:fyp/UI/Services/pharmacy.dart';
+import 'package:fyp/UI/Services/services.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
@@ -141,6 +142,12 @@ class Dashboard extends StatelessWidget {
                               icon: 'assets/images/pharmacy.png',
                               title: 'Other Services',
                               scale: 1.5,
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return OtherServices();
+                                    }));
+                              },
                             ),
                           ],
                         ),

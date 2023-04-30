@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:fyp/Services/Model/appointment_model.dart';
 import 'package:fyp/Services/Model/create_appointment_model.dart';
+import 'package:fyp/Services/Model/fav_model.dart';
+import 'package:fyp/Services/Model/services_model.dart';
 import 'package:fyp/Services/Model/signup_model.dart';
 import 'package:http/http.dart';
 import '../Model/doctor_model.dart';
+import '../Model/favList_model.dart';
 import '../Model/login_model.dart';
 import '../Model/pharmacy_model.dart';
 import 'data_provider.dart';
@@ -67,6 +70,30 @@ class ApiRepository {
     pharmacyModel = await PharmacyModel.fromJson(
         await responseBody(response: await dataService.getPharmacy()));
     return pharmacyModel;
+  }
+
+
+  Future<FavModel> postFavorites(String id) async {
+    var favModel;
+
+    favModel = await FavModel.fromJson(
+        await responseBody(response: await dataService.postFavourites(id)));
+    return favModel;
+  }
+
+  Future<FavListModel> getFavorites() async {
+    var favModel;
+
+    favModel = await FavListModel.fromJson(
+        await responseBody(response: await dataService.getFavourites()));
+    return favModel;
+  }
+  Future<ServicesModel> getServices() async {
+    var servicesModel;
+
+    servicesModel = await ServicesModel.fromJson(
+        await responseBody(response: await dataService.getServices()));
+    return servicesModel;
   }
 
   Future<DoctorModel> getDoctor() async {
