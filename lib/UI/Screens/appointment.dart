@@ -71,6 +71,7 @@ class _AppointmentState extends State<Appointment> {
                           children: [
                             Container(
                               padding: EdgeInsets.all(12),
+
                               decoration: BoxDecoration(
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.only(
@@ -100,9 +101,7 @@ class _AppointmentState extends State<Appointment> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  CircleAvatar(
-                                    radius: 25,
-                                  ),
+                                  Image.asset('assets/images/profile.jpg',height: 45,),
                                   SizedBox(
                                     width: 5.w,
                                   ),

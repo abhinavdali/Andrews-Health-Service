@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
+import 'package:fyp/SharedPreference/sharedPreference.dart';
 import 'package:fyp/UI/Screens/appointment.dart';
+import 'package:fyp/UI/Screens/news.dart';
 import 'package:fyp/UI/Services/consultation.dart';
 import 'package:fyp/UI/Services/pharmacy.dart';
 import 'package:fyp/UI/Services/services.dart';
+import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Extracted Widgets/const.dart';
+import '../../Services/Model/news_model.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var name = UserPreferences.getName();
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
@@ -55,7 +60,7 @@ class Dashboard extends StatelessWidget {
                           fontSize: 17.sp,
                         ),
                         CustomText(
-                          text: 'Welcome! John',
+                          text: 'Welcome! $name',
                           fontSize: 17.sp,
                         ),
                       ],
@@ -152,6 +157,24 @@ class Dashboard extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(height: 2.h,),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [shadow],
+                          
+                        ),
+                        child: Column(
+                          children: [
+                            CustomText(text: 'View the latest News'),
+                            SizedBox(height: 1.5.h),
+                            LoginButton(text: 'See News', color: Colors.blue, onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context){return NewsPage();}));
+                            })
+                          ],
+                        ),
+                      )
                     ]),
               ),
             )

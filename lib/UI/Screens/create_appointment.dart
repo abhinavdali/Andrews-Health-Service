@@ -14,7 +14,8 @@ import 'package:sizer/sizer.dart';
 import '../../Extracted Widgets/custom_text.dart';
 
 class CreateAppointment extends StatefulWidget {
-  const CreateAppointment({super.key});
+  final name,designation;
+  const CreateAppointment({super.key, this.name, this.designation});
 
   @override
   State<CreateAppointment> createState() => _CreateAppointmentState();
@@ -48,6 +49,9 @@ class _CreateAppointmentState extends State<CreateAppointment> {
       environment: ESewaConfiguration.ENVIRONMENT_TEST,
     );
     _esewaPnp = ESewaPnp(configuration: _configuration!);
+    widget.name != null ? doctorController.text = widget.name : '';
+    widget.designation != null ? designationController.text = widget.designation : '';
+
   }
 
   String? defDoctor = 'Doctor Name';

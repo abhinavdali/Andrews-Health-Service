@@ -25,21 +25,16 @@ class Login extends StatelessWidget {
       backgroundColor: Colors.white,
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
-          // TODO: implement listener}
           if (state is LoginLoaded) {
-            print('success');
             if (state.loginModel.token.isNotEmpty) {
-              print(state.loginModel.token);
               UserPreferences.setToken(state.loginModel.token);
-
+              UserPreferences.setEmail(state.loginModel.result.email);
+              UserPreferences.setPhone(state.loginModel.result.phone);
+              UserPreferences.setName(state.loginModel.result.name);
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) {
                 return BottomBar();
               }));
-
-              // Navigator.push(context, MaterialPageRoute(builder: (context) {
-              //   return Dashboard();
-              // }));
             }
           }
           if (state is LoginLoading) {
@@ -50,8 +45,8 @@ class Login extends StatelessWidget {
                 builder: (builder) {
                   return AlertDialog(
                     content: Container(
-                      height: 90,
-                      width: 170,
+                      height: 80,
+                      width: 150,
                       child: Column(
                         children: [
                           CustomText(text: 'Please Wait'),
@@ -67,7 +62,37 @@ class Login extends StatelessWidget {
           }
           if (state is LoginError) {
             Navigator.pop(context);
-            print('fail');
+            showDialog(
+                barrierDismissible: false,
+                barrierColor: Colors.grey.withOpacity(0.2),
+                context: context,
+                builder: (builder) {
+                  return AlertDialog(
+                    contentPadding: EdgeInsets.symmetric(vertical: 24,horizontal: 26),
+                    content: Container(
+                      height: 72,
+                      width: 150,
+                      child: Column(
+                        children: [
+                          CustomText(text: 'Invalid Credentials',weight: FontWeight.w600,fontSize: 12.sp,),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              child: Center(child: CustomText(text: 'OK',color: Colors.blue,)),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }
         },
         child: Container(

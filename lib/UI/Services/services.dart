@@ -63,7 +63,7 @@ class _OtherServicesState extends State<OtherServices> {
                               ClipRRect(
                                 borderRadius: BorderRadius.only(topLeft: Radius.circular(12),topRight: Radius.circular(12)),
                                 child: Image.network(
-                                  'https://andrews-dipeshshtha4.b4a.run/uploads/${def[i].uploadedFile.path}',
+                                  'https://andrews-health-services-production.up.railway.app/uploads/${def[i].uploadedFile.path}',
                                   height: 16.h,
                                   width: double.infinity,
                                   fit: BoxFit.fitHeight,

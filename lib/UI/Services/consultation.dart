@@ -77,6 +77,8 @@ class _ConsultationState extends State<Consultation> {
                               MaterialPageRoute(builder: (context) {
                             return DoctorProfile(
                                 name: def[index].name,
+                                department:def[index].department ,
+                                education: def[index].education,
                                 designation: def[index].designation,
                                 available: def[index].timing);
                           }));
@@ -99,7 +101,7 @@ class _ConsultationState extends State<Consultation> {
                                         topLeft: Radius.circular(12),
                                         bottomLeft: Radius.circular(12)),
                                     child: Image.network(
-                                      'https://andrews-dipeshshtha4.b4a.run/uploads/${def[index].uploadedFile.path}',
+                                      'https://andrews-health-services-production.up.railway.app/uploads/${def[index].uploadedFile.path}',
                                       height: 16.h,
                                       width: 40.w,
                                       fit: BoxFit.fitWidth,

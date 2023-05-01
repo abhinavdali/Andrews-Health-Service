@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Logic/FavList_bloc/fav_list_bloc.dart';
 import 'package:fyp/Logic/Fav_bloc/fav_bloc.dart';
+import 'package:fyp/Logic/Feedback_bloc/feedback_bloc.dart';
 import 'package:fyp/Logic/Pharmacy_bloc/bloc/pharmacy_bloc.dart';
+import 'package:fyp/Logic/Report_bloc/report_bloc.dart';
 import 'package:fyp/Logic/Services_bloc/services_bloc.dart';
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
 
@@ -13,6 +15,7 @@ import 'Logic/Appointment_bloc/bloc/appointment_bloc.dart';
 import 'Logic/CreateAppointment_bloc/bloc/create_appointment_bloc.dart';
 import 'Logic/Doctor_bloc/bloc/doctor_bloc.dart';
 import 'Logic/Login_bloc/login_bloc.dart';
+import 'Logic/News_bloc/news_bloc.dart';
 import 'Services/Data Provider/apiRepository.dart';
 import 'Services/Data Provider/data_provider.dart';
 import 'SharedPreference/sharedPreference.dart';
@@ -65,6 +68,18 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ServicesBloc>(
           create: (BuildContext context) => ServicesBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<NewsBloc>(
+          create: (BuildContext context) => NewsBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<ReportBloc>(
+          create: (BuildContext context) => ReportBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<FeedbackBloc>(
+          create: (BuildContext context) => FeedbackBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],

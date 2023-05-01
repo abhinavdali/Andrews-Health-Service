@@ -12,8 +12,10 @@ class CustomTextField extends StatefulWidget {
       hintText,
       textInputAction,
       keyboardType,
-      onPress,fillColor,
+      onPress,
+      fillColor,
       onChange,
+      vPadding,
       enabled;
   const CustomTextField(
       {Key? key,
@@ -26,8 +28,9 @@ class CustomTextField extends StatefulWidget {
       this.prefix,
       this.isPass = false,
       this.hintText,
-        this.onChange,
-        this.fillColor =const  Color(0xFFEDEDED),
+      this.vPadding = 0.0,
+      this.onChange,
+      this.fillColor = const Color(0xFFEDEDED),
       this.textInputAction,
       this.keyboardType})
       : super(key: key);
@@ -76,7 +79,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       isHidden ? CupertinoIcons.eye : CupertinoIcons.eye_slash,
                       size: 20,
                     )),
-            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 16, vertical: widget.vPadding),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none,

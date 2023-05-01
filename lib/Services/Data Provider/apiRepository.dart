@@ -1,13 +1,17 @@
 import 'dart:convert';
+import 'package:fyp/Logic/Feedback_bloc/feedback_bloc.dart';
 import 'package:fyp/Services/Model/appointment_model.dart';
 import 'package:fyp/Services/Model/create_appointment_model.dart';
 import 'package:fyp/Services/Model/fav_model.dart';
+import 'package:fyp/Services/Model/feedback_model.dart';
+import 'package:fyp/Services/Model/report_model.dart';
 import 'package:fyp/Services/Model/services_model.dart';
 import 'package:fyp/Services/Model/signup_model.dart';
 import 'package:http/http.dart';
 import '../Model/doctor_model.dart';
 import '../Model/favList_model.dart';
 import '../Model/login_model.dart';
+import '../Model/news_model.dart';
 import '../Model/pharmacy_model.dart';
 import 'data_provider.dart';
 
@@ -64,6 +68,19 @@ class ApiRepository {
     return loginModel;
   }
 
+  Future<FeedbackModel> postFeedback({
+    required String email,
+    required String phone,
+    required String name,
+    required String message,
+  }) async {
+    var feedbackModel;
+
+    feedbackModel = await FeedbackModel.fromJson(await responseBody(
+        response: await dataService.postFeedback(name, email, phone, message)));
+    return feedbackModel;
+  }
+
   Future<PharmacyModel> getPharmacy() async {
     var pharmacyModel;
 
@@ -102,6 +119,22 @@ class ApiRepository {
     doctorModel = await DoctorModel.fromJson(
         await responseBody(response: await dataService.getDoctor()));
     return doctorModel;
+  }
+
+  Future<NewsModel> getNews() async {
+    var newsModel;
+
+    newsModel = await NewsModel.fromJson(
+        await responseBody(response: await dataService.getNews()));
+    return newsModel;
+  }
+
+  Future<ReportModel> getReport() async {
+    var reportModel;
+
+    reportModel = await ReportModel.fromJson(
+        await responseBody(response: await dataService.getReport()));
+    return reportModel;
   }
 
   Future<AppointmentModel> getAppointment() async {

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
+import 'package:fyp/UI/Screens/create_appointment.dart';
 import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:sizer/sizer.dart';
 
 class DoctorProfile extends StatefulWidget {
-  final name, designation, available;
-  const DoctorProfile({super.key, this.name, this.designation, this.available});
+  final name, designation, available,department,education;
+  const DoctorProfile({super.key, this.name, this.designation, this.education,this.department, this.available});
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
@@ -68,6 +69,10 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           width: 60,
                           decoration: BoxDecoration(
                               color: Colors.green,
+                              image: DecorationImage(
+                                image: AssetImage('assets/images/profile.jpg',),fit: BoxFit.fill
+
+                              ),
                               borderRadius: BorderRadius.circular(12)),
                         ),
                         SizedBox(width: 2.w),
@@ -80,15 +85,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                               fontSize: 12.sp,
                             ),
                             SizedBox(
-                              height: 1.h,
+                              height: 3.h,
                             ),
-                            CustomText(
-                              text: '${widget.designation}',
-                              fontSize: 11.sp,
-                            ),
-                            SizedBox(
-                              height: 0.1.h,
-                            ),
+
                             CustomText(
                               text: 'Available Hours: ${widget.available}',
                             )
@@ -148,7 +147,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       ],
                     ),
                     SizedBox(
-                      height: 1.5.h,
+                      height: 3.h,
                     ),
                     CustomText(
                       text: 'About Doctor',
@@ -156,11 +155,21 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       weight: FontWeight.w600,
                     ),
                     SizedBox(
-                      height: 0.2.h,
+                      height: 2.h,
+                    ),
+
+                    CustomText(
+                        text: 'Department: ${widget.department}',fontSize: 12.sp,
+                    ),  SizedBox(
+                      height: 1.h,
                     ),
                     CustomText(
-                      text:
-                          'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ',
+                      text: 'Designation: ${widget.designation}',fontSize: 12.sp,
+                    ),  SizedBox(
+                      height: 1.h,
+                    ),
+                    CustomText(
+                        text: 'Education: ${widget.education}',fontSize: 12.sp,
                     ),
                     Expanded(
                       child: Column(
@@ -169,7 +178,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           LoginButton(
                               text: 'MAKE APPOINTMENT',
                               color: Colors.blue,
-                              onTap: () {})
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context){return CreateAppointment(name: widget.name,designation:widget.designation);}));
+                              })
                         ],
                       ),
                     )

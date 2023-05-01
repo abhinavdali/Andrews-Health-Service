@@ -4,7 +4,7 @@ import 'package:fyp/SharedPreference/sharedPreference.dart';
 import 'package:http/http.dart' as http;
 
 class DataProvider {
-  var url = 'https://andrews-dipeshshtha4.b4a.run/';
+  var url = 'https://andrews-health-services-production.up.railway.app';
   var token = UserPreferences.getToken();
 
   Future<http.Response> login(
@@ -96,6 +96,30 @@ class DataProvider {
     return response;
   }
 
+  Future<http.Response> postFeedback(String name,String email,String phone,String message) {
+    var response = http.post(
+      Uri.parse('$url/api/feedback/create-feedback'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },body: jsonEncode(<String, String>{
+      "email": email,
+      "name": name,
+      "phone": phone,
+      "message": message
+    })
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
   Future<http.Response> getFavourites() {
     var response = http.get(
       Uri.parse('$url/api/doctor/favourite'),
@@ -118,6 +142,25 @@ class DataProvider {
   Future<http.Response> getServices() {
     var response = http.get(
       Uri.parse('$url/api/services/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
+  Future<http.Response> getReport() {
+    var response = http.get(
+      Uri.parse('$url/api/report/generate-report'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token'
@@ -157,6 +200,25 @@ class DataProvider {
   Future<http.Response> getAppointment() {
     var response = http.get(
       Uri.parse('$url/api/appointment'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
+  Future<http.Response> getNews() {
+    var response = http.get(
+      Uri.parse('$url/api/news/'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token'

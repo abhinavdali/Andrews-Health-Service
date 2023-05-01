@@ -203,7 +203,7 @@ class _PharmacyState extends State<Pharmacy> {
                                             ClipRRect(
                                               borderRadius: BorderRadius.only(topRight: Radius.circular(12),topLeft: Radius.circular(12)),
                                               child: Image.network(
-                                                'https://andrews-dipeshshtha4.b4a.run/uploads/${_search[index].uploadedFile!.path}',
+                                                'https://andrews-health-services-production.up.railway.app/uploads/${_search[index].uploadedFile!.path}',
                                                 height:20.h,errorBuilder: (BuildContext context,
                                                   Object exception, StackTrace? stackTrace) {
                                                 return Container(
