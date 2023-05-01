@@ -138,6 +138,24 @@ class DataProvider {
 
     return response;
   }
+  Future<http.Response> getDesignation() {
+    var response = http.get(
+      Uri.parse('$url/api/designation'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token'
+      },
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
 
   Future<http.Response> getServices() {
     var response = http.get(

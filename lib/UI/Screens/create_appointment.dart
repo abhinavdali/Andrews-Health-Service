@@ -7,6 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Extracted%20Widgets/const.dart';
 import 'package:fyp/Extracted%20Widgets/textfield.dart';
 import 'package:fyp/Logic/CreateAppointment_bloc/bloc/create_appointment_bloc.dart';
+import 'package:fyp/Logic/Designation_bloc/designation_bloc.dart';
+import 'package:fyp/Logic/Doctor_bloc/bloc/doctor_bloc.dart';
+import 'package:fyp/Services/Model/designation_model.dart';
 import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sizer/sizer.dart';
@@ -14,7 +17,7 @@ import 'package:sizer/sizer.dart';
 import '../../Extracted Widgets/custom_text.dart';
 
 class CreateAppointment extends StatefulWidget {
-  final name,designation;
+  final name, designation;
   const CreateAppointment({super.key, this.name, this.designation});
 
   @override
@@ -42,7 +45,8 @@ class _CreateAppointmentState extends State<CreateAppointment> {
   @override
   void initState() {
     super.initState();
-
+    BlocProvider.of<DoctorBloc>(context).add(OnDoctorLoad());
+    BlocProvider.of<DesignationBloc>(context).add(OnDesignationCall());
     _configuration = ESewaConfiguration(
       clientID: "JB0BBQ4aD0UqIThFJwAKBgAXEUkEGQUBBAwdOgABHD4DChwUAB0R",
       secretKey: "BhwIWQQADhIYSxILExMcAgFXFhcOBwAKBgAXEQ==",
@@ -50,22 +54,17 @@ class _CreateAppointmentState extends State<CreateAppointment> {
     );
     _esewaPnp = ESewaPnp(configuration: _configuration!);
     widget.name != null ? doctorController.text = widget.name : '';
-    widget.designation != null ? designationController.text = widget.designation : '';
-
+    widget.designation != null
+        ? designationController.text = widget.designation
+        : '';
   }
 
   String? defDoctor = 'Doctor Name';
+  String? defDesignation = 'Designation';
   String? defGender = 'Gender';
 
-  List<String> doctorName = [
-    'Dr. Krish Shrestha',
-    'Dr. Shyam Kumar',
-    'Dr. Anita Acharya'
-  ];
+  List<String> gender = ['Male', 'Female', 'Other'];
 
-  List<String> gender = ['Male', 'Female', 'other'];
-
-  List<String> designation = ['Neuroscience', 'Dentist', 'Dermatologist'];
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -316,88 +315,213 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                       context: context,
                       expand: false,
                       builder: (context) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.55,
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomText(
-                                      text: 'Choose a Doctor',
-                                      fontSize: 12.sp,
-                                      weight: FontWeight.w600,
-                                    ),
-                                    GestureDetector(
-                                        onTap: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child:
-                                            const Icon(CupertinoIcons.multiply))
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                ListView.builder(
-                                    shrinkWrap: true,
-                                    padding: const EdgeInsets.all(0),
-                                    physics: const ClampingScrollPhysics(),
-                                    itemCount: doctorName.length,
-                                    itemBuilder: (context, i) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          print('tapped');
-                                          setState(() {
-                                            doctorController.text ==
-                                                doctorName[i];
-                                            Navigator.pop(
-                                                context, doctorName[i]);
-                                          });
-                                        },
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 10),
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 12),
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xffEDEDED),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
+                        return BlocBuilder<DesignationBloc, DesignationState>(
+                          builder: (context, state) {
+                            if (state is DesignationLoaded) {
+                              var def = state.designationModel.designation;
+                              var list = def.map((e) => e.name).toList();
+                              return Container(
+                                height:
+                                MediaQuery.of(context).size.height * 0.55,
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          CustomText(
+                                            text: 'Choose a Designation',
+                                            fontSize: 12.sp,
+                                            weight: FontWeight.w600,
                                           ),
-                                          child:
-                                              CustomText(text: doctorName[i]),
-                                        ),
-                                      );
-                                    })
-                              ]),
+                                          GestureDetector(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Icon(
+                                                  CupertinoIcons.multiply))
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 1.h,
+                                      ),
+                                      Expanded(
+                                        child: ListView.builder(
+                                            shrinkWrap: true,
+                                            padding: const EdgeInsets.all(0),
+                                            physics:
+                                            const ClampingScrollPhysics(),
+                                            itemCount: list.length,
+                                            itemBuilder: (context, i) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  print('tapped');
+                                                  setState(() {
+                                                    designationController.text ==
+                                                        list[i];
+
+                                                    Navigator.pop(
+                                                        context, list[i]);
+                                                  });
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 12),
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                    const Color(0xffEDEDED),
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        8),
+                                                  ),
+                                                  child:
+                                                  CustomText(text: list[i]),
+                                                ),
+                                              );
+                                            }),
+                                      )
+                                    ]),
+                              );
+                            }
+                            return Container(
+                              height: MediaQuery.of(context).size.height * 0.55,
+                              child: const Center(
+                                child: CircularProgressIndicator.adaptive(),
+                              ),
+                            );
+                          },
                         );
                       }).then((value) {
                     setState(() {
-                      defDoctor = value ?? 'Doctor Name';
+                      defDesignation = value ?? 'Designation';
                     });
                   });
                 },
-                enabled: false,
-                controller: doctorController,
-                hintText: defDoctor,
-              ),
-              SizedBox(
-                height: 1.2.h,
-              ),
-              CustomTextField(
-                onPress: () {},
                 validator: (value) {
                   if (nameController.text.isEmpty) {
                     return 'Please enter the designation';
                   }
                 },
-                enabled: true,
+                enabled: false,
                 controller: designationController,
-                hintText: 'Designation',
+                hintText: defDesignation,
+              ),
+              SizedBox(
+                height: 1.2.h,
+              ),
+              CustomTextField(
+                onPress: () {
+                  if(defDesignation == 'Designation'){
+                    print ('No Designation');
+                  }else{
+                    showMaterialModalBottomSheet(
+                        context: context,
+                        expand: false,
+                        builder: (context) {
+                          return BlocBuilder<DoctorBloc, DoctorState>(
+                            builder: (context, state) {
+                              if (state is DoctorLoaded) {
+                                var def = state.doctorModel.doctors;
+                                var list = def.map((e) => e.name).toList();
+                                var desList = def.map((e) => e.designation).toList();
+                                print(desList);
+                                print(defDesignation);
+                                return Container(
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.55,
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CustomText(
+                                              text: 'Choose a Doctor',
+                                              fontSize: 12.sp,
+                                              weight: FontWeight.w600,
+                                            ),
+                                            GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Icon(
+                                                    CupertinoIcons.multiply))
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        Expanded(
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              padding: const EdgeInsets.all(0),
+                                              physics:
+                                              const ClampingScrollPhysics(),
+                                              itemCount: list.length,
+                                              itemBuilder: (context, i) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    print('tapped');
+                                                    setState(() {
+                                                      doctorController.text ==
+                                                          list[i];
+                                                      Navigator.pop(
+                                                          context, list[i]);
+                                                    });
+                                                  },
+                                                  child:  desList[i] == defDesignation?Container(
+                                                    margin: const EdgeInsets.only(
+                                                        top: 10),
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 12),
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                      const Color(0xffEDEDED),
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          8),
+                                                    ),
+                                                    child:
+
+                                                    CustomText(text: list[i]),
+                                                  ):Container(),
+                                                );
+                                              }),
+                                        )
+                                      ]),
+                                );
+                              }
+                              return Container(
+                                height: MediaQuery.of(context).size.height * 0.55,
+                                child: const Center(
+                                  child: CircularProgressIndicator.adaptive(),
+                                ),
+                              );
+                            },
+                          );
+                        }).then((value) {
+                      setState(() {
+                        defDesignation == 'Designation'?defDoctor = 'Doctor Name':
+                        defDoctor = value ?? 'Doctor Name';
+                      });
+                    });
+                  }
+                },
+                enabled: false,
+                controller: doctorController,
+                hintText: defDoctor,
               ),
               SizedBox(
                 height: 1.2.h,

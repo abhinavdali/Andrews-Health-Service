@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fyp/Logic/Designation_bloc/designation_bloc.dart';
 import 'package:fyp/Logic/FavList_bloc/fav_list_bloc.dart';
 import 'package:fyp/Logic/Fav_bloc/fav_bloc.dart';
 import 'package:fyp/Logic/Feedback_bloc/feedback_bloc.dart';
@@ -80,6 +81,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<FeedbackBloc>(
           create: (BuildContext context) => FeedbackBloc(
+              apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<DesignationBloc>(
+          create: (BuildContext context) => DesignationBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
         ),
       ],

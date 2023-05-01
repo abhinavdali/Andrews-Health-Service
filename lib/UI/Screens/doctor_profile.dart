@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fyp/Extracted%20Widgets/const.dart';
 import 'package:fyp/Extracted%20Widgets/custom_text.dart';
 import 'package:fyp/UI/Screens/create_appointment.dart';
 import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:sizer/sizer.dart';
 
 class DoctorProfile extends StatefulWidget {
-  final name, designation, available,department,education;
-  const DoctorProfile({super.key, this.name, this.designation, this.education,this.department, this.available});
+  final name, designation, available,department,education,description;
+  const DoctorProfile({super.key, this.name, this.designation, this.education,this.department, this.available,this.description});
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
@@ -58,8 +59,9 @@ class _DoctorProfileState extends State<DoctorProfile> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.circular(12))),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                physics: BouncingScrollPhysics(),
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,37 +159,69 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     SizedBox(
                       height: 2.h,
                     ),
+                    Column(                      crossAxisAlignment:CrossAxisAlignment.start,
 
-                    CustomText(
-                        text: 'Department: ${widget.department}',fontSize: 12.sp,
+                      children: [
+                        CustomText(
+                          text: 'Department:',fontSize: 10.sp,weight: FontWeight.w600,
+                        ),
+
+                        CustomText(
+                          text: '${widget.designation}',fontSize: 10.sp,
+                        ),
+                      ],
                     ),  SizedBox(
                       height: 1.h,
                     ),
-                    CustomText(
-                      text: 'Designation: ${widget.designation}',fontSize: 12.sp,
-                    ),  SizedBox(
-                      height: 1.h,
-                    ),
-                    CustomText(
-                        text: 'Education: ${widget.education}',fontSize: 12.sp,
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          LoginButton(
-                              text: 'MAKE APPOINTMENT',
-                              color: Colors.blue,
-                              onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context){return CreateAppointment(name: widget.name,designation:widget.designation);}));
-                              })
-                        ],
+                    Column(
+                      crossAxisAlignment:CrossAxisAlignment.start,
+                      children: [ CustomText(
+                        text: 'Education:',fontSize: 10.sp,weight: FontWeight.w600,
                       ),
-                    )
+                        CustomText(
+                          text: '${widget.education}',fontSize: 10.sp,
+                        ),
+                      ],
+                    ),  SizedBox(
+                      height: 1.h,
+                    ),
+                    widget.description != null ?Column(                      crossAxisAlignment:CrossAxisAlignment.start,
+
+                      children: [
+                        CustomText(
+                          text: 'Description:',fontSize: 10.sp,weight: FontWeight.w600,
+                        ),
+                        CustomText(
+                          text: '${widget.description}',fontSize: 10.sp,
+                        ),
+                      ],
+                    ):Container(),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+
+
                   ]),
             ),
           ),
         ],
+      ),
+      bottomSheet:  Container(
+        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [BoxShadow(
+            spreadRadius: 4,
+            blurRadius: 2,
+            color: Colors.grey.withOpacity(0.3)
+          )]
+        ),
+        child: LoginButton(
+            text: 'MAKE APPOINTMENT',
+            color: Colors.blue,
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context){return CreateAppointment(name: widget.name,designation:widget.designation);}));
+            }),
       ),
     );
   }

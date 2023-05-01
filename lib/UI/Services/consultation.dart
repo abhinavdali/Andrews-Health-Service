@@ -80,7 +80,9 @@ class _ConsultationState extends State<Consultation> {
                                 department:def[index].department ,
                                 education: def[index].education,
                                 designation: def[index].designation,
-                                available: def[index].timing);
+                                available: def[index].timing,
+                                description: def[index].description,
+                            );
                           }));
                         },
                         child: Container(
@@ -103,14 +105,14 @@ class _ConsultationState extends State<Consultation> {
                                     child: Image.network(
                                       'https://andrews-health-services-production.up.railway.app/uploads/${def[index].uploadedFile.path}',
                                       height: 16.h,
-                                      width: 40.w,
-                                      fit: BoxFit.fitWidth,
+                                      width: 35.w,
+                                      fit: BoxFit.fitHeight,
                                       errorBuilder: (BuildContext context,
                                           Object exception,
                                           StackTrace? stackTrace) {
                                         return Container(
                                           height: 16.h,
-                                          width: 40.w,
+                                          width: 35.w,
                                           color: Colors.grey,
                                           child: Icon(
                                             Icons.error,
@@ -129,13 +131,17 @@ class _ConsultationState extends State<Consultation> {
                                           MainAxisAlignment.start,
                                       children: [
                                         CustomText(
-                                          text: 'Dr. ${def[index].name}',
+                                          text: '${def[index].name}',
                                           weight: FontWeight.w600,
                                           fontSize: 13.sp,
                                         ),
-                                        CustomText(
-                                            text:
-                                                '${def[index].designation} • ${def[index].education}'),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.44,
+                                          child: CustomText(
+                                              text:
+                                                  '${def[index].designation} '),
+                                        ),
+
                                         SizedBox(
                                           height: 1.h,
                                         ),

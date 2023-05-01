@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fyp/Logic/Feedback_bloc/feedback_bloc.dart';
 import 'package:fyp/Services/Model/appointment_model.dart';
 import 'package:fyp/Services/Model/create_appointment_model.dart';
+import 'package:fyp/Services/Model/designation_model.dart';
 import 'package:fyp/Services/Model/fav_model.dart';
 import 'package:fyp/Services/Model/feedback_model.dart';
 import 'package:fyp/Services/Model/report_model.dart';
@@ -105,6 +106,15 @@ class ApiRepository {
         await responseBody(response: await dataService.getFavourites()));
     return favModel;
   }
+
+  Future<DesignationModel> getDesignation() async {
+    var designationModel;
+
+    designationModel = await DesignationModel.fromJson(
+        await responseBody(response: await dataService.getDesignation()));
+    return designationModel;
+  }
+
   Future<ServicesModel> getServices() async {
     var servicesModel;
 
