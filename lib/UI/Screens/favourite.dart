@@ -77,9 +77,13 @@ class _FavouritesState extends State<Favourites> {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                                   return DoctorProfile(
-                                      name: def[index].name,
-                                      designation: def[index].designation,
-                                      available: def[index].timing);
+                                    name: def[index].name,
+                                    department:def[index].department ,
+                                    education: def[index].education,
+                                    designation: def[index].designation,
+                                    available: def[index].timing,
+                                    description: def[index].description,
+                                  );
                                 }));
                           },
                           child: Container(

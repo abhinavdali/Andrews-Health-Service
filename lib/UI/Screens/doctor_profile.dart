@@ -6,8 +6,15 @@ import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:sizer/sizer.dart';
 
 class DoctorProfile extends StatefulWidget {
-  final name, designation, available,department,education,description;
-  const DoctorProfile({super.key, this.name, this.designation, this.education,this.department, this.available,this.description});
+  final name, designation, available, department, education, description;
+  const DoctorProfile(
+      {super.key,
+      this.name,
+      this.designation,
+      this.education,
+      this.department,
+      this.available,
+      this.description});
 
   @override
   State<DoctorProfile> createState() => _DoctorProfileState();
@@ -61,7 +68,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                       topRight: Radius.circular(12))),
               child: ListView(
                   // crossAxisAlignment: CrossAxisAlignment.start,
-                physics: BouncingScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,9 +79,10 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           decoration: BoxDecoration(
                               color: Colors.green,
                               image: DecorationImage(
-                                image: AssetImage('assets/images/profile.jpg',),fit: BoxFit.fill
-
-                              ),
+                                  image: AssetImage(
+                                    'assets/images/profile.jpg',
+                                  ),
+                                  fit: BoxFit.fill),
                               borderRadius: BorderRadius.circular(12)),
                         ),
                         SizedBox(width: 2.w),
@@ -89,7 +97,6 @@ class _DoctorProfileState extends State<DoctorProfile> {
                             SizedBox(
                               height: 3.h,
                             ),
-
                             CustomText(
                               text: 'Available Hours: ${widget.available}',
                             )
@@ -159,68 +166,80 @@ class _DoctorProfileState extends State<DoctorProfile> {
                     SizedBox(
                       height: 2.h,
                     ),
-                    Column(                      crossAxisAlignment:CrossAxisAlignment.start,
-
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(
-                          text: 'Department:',fontSize: 10.sp,weight: FontWeight.w600,
+                          text: 'Department:',
+                          fontSize: 10.sp,
+                          weight: FontWeight.w600,
                         ),
-
                         CustomText(
-                          text: '${widget.designation}',fontSize: 10.sp,
+                          text: '${widget.designation}',
+                          fontSize: 10.sp,
                         ),
                       ],
-                    ),  SizedBox(
+                    ),
+                    SizedBox(
                       height: 1.h,
                     ),
                     Column(
-                      crossAxisAlignment:CrossAxisAlignment.start,
-                      children: [ CustomText(
-                        text: 'Education:',fontSize: 10.sp,weight: FontWeight.w600,
-                      ),
-                        CustomText(
-                          text: '${widget.education}',fontSize: 10.sp,
-                        ),
-                      ],
-                    ),  SizedBox(
-                      height: 1.h,
-                    ),
-                    widget.description != null ?Column(                      crossAxisAlignment:CrossAxisAlignment.start,
-
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CustomText(
-                          text: 'Description:',fontSize: 10.sp,weight: FontWeight.w600,
+                          text: 'Education:',
+                          fontSize: 10.sp,
+                          weight: FontWeight.w600,
                         ),
                         CustomText(
-                          text: '${widget.description}',fontSize: 10.sp,
+                          text: '${widget.education}',
+                          fontSize: 10.sp,
                         ),
                       ],
-                    ):Container(),
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    widget.description != null
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: 'Description:',
+                                fontSize: 10.sp,
+                                weight: FontWeight.w600,
+                              ),
+                              CustomText(
+                                text: '${widget.description}',
+                                fontSize: 10.sp,
+                              ),
+                            ],
+                          )
+                        : Container(),
                     SizedBox(
                       height: 10.h,
                     ),
-
-
                   ]),
             ),
           ),
         ],
       ),
-      bottomSheet:  Container(
-        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [BoxShadow(
-            spreadRadius: 4,
-            blurRadius: 2,
-            color: Colors.grey.withOpacity(0.3)
-          )]
-        ),
+      bottomSheet: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          BoxShadow(
+              spreadRadius: 4,
+              blurRadius: 2,
+              color: Colors.grey.withOpacity(0.3))
+        ]),
         child: LoginButton(
             text: 'MAKE APPOINTMENT',
             color: Colors.blue,
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context){return CreateAppointment(name: widget.name,designation:widget.designation);}));
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return CreateAppointment(
+                    name: widget.name, designation: widget.designation);
+              }));
             }),
       ),
     );
