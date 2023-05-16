@@ -8,6 +8,7 @@ import 'package:fyp/Logic/Pharmacy_bloc/bloc/pharmacy_bloc.dart';
 import 'package:fyp/Logic/Report_bloc/report_bloc.dart';
 import 'package:fyp/Logic/Services_bloc/services_bloc.dart';
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
+import 'package:fyp/Logic/VerifyEmail_bloc/bloc/verify_email_bloc.dart';
 
 import 'package:fyp/splashscreen.dart';
 import 'package:sizer/sizer.dart';
@@ -86,6 +87,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<DesignationBloc>(
           create: (BuildContext context) => DesignationBloc(
               apiRepository: ApiRepository(dataService: DataProvider())),
+        ),
+        BlocProvider<VerifyEmailBloc>(
+          create: (BuildContext context) => VerifyEmailBloc(),
         ),
       ],
       child: Sizer(builder: (context, orientation, deviceType) {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fyp/SharedPreference/sharedPreference.dart';
+import 'package:fyp/UI/Forgot%20Password/verifyEmail.dart';
 import 'package:http/http.dart' as http;
 
 class DataProvider {
@@ -58,6 +59,29 @@ class DataProvider {
     return response;
   }
 
+  Future<http.Response> verifyEmail({
+    required String email,
+  }) {
+    var response = http
+        .post(Uri.parse('$url/api/users/forgot-password'),
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(<String, String>{
+              "email": email,
+            }))
+        .timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
   Future<http.Response> getPharmacy() {
     var response = http.get(
       Uri.parse('$url/api/pharmacy'),
@@ -96,19 +120,21 @@ class DataProvider {
     return response;
   }
 
-  Future<http.Response> postFeedback(String name,String email,String phone,String message) {
-    var response = http.post(
-      Uri.parse('$url/api/feedback/create-feedback'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token'
-      },body: jsonEncode(<String, String>{
-      "email": email,
-      "name": name,
-      "phone": phone,
-      "message": message
-    })
-    ).timeout(
+  Future<http.Response> postFeedback(
+      String name, String email, String phone, String message) {
+    var response = http
+        .post(Uri.parse('$url/api/feedback/create-feedback'),
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            },
+            body: jsonEncode(<String, String>{
+              "email": email,
+              "name": name,
+              "phone": phone,
+              "message": message
+            }))
+        .timeout(
       const Duration(seconds: 15),
       onTimeout: () {
         // Time has run out, do what you wanted to do.
@@ -138,6 +164,7 @@ class DataProvider {
 
     return response;
   }
+
   Future<http.Response> getDesignation() {
     var response = http.get(
       Uri.parse('$url/api/designation'),
@@ -194,7 +221,6 @@ class DataProvider {
 
     return response;
   }
-
 
   Future<http.Response> getDoctor() {
     var response = http.get(

@@ -18,10 +18,10 @@ class MyReports extends StatefulWidget {
 class _MyReportsState extends State<MyReports> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     BlocProvider.of<ReportBloc>(context).add(OnReportLoad());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,49 +40,73 @@ class _MyReportsState extends State<MyReports> {
         children: [
           Expanded(child: BlocBuilder<ReportBloc, ReportState>(
             builder: (context, state) {
-              if(state is ReportLoading){
-                return Center(child: CircularProgressIndicator.adaptive(),);
+              if (state is ReportLoading) {
+                return Center(
+                  child: CircularProgressIndicator.adaptive(),
+                );
               }
-              if(state is ReportLoaded){
+              if (state is ReportLoaded) {
                 var def = state.reportModel.report;
                 return ListView.builder(
                     itemCount: def.length,
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
                     itemBuilder: (context, i) {
-
                       return GestureDetector(
-                        onTap: (){
-                        },
+                        onTap: () {},
                         child: Container(
                           margin: EdgeInsets.only(bottom: 16),
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
                               boxShadow: [shadow],
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(12)
-                          ),
+                              borderRadius: BorderRadius.circular(12)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomText(text: '${def[i].date.toString()
-                                  .substring(
-                                  0, def[i].date.toString().indexOf(' '))}',color: Colors.grey,fontSize: 9.sp,),
-                              SizedBox(height: 1.h,),
-                              CustomText(text: '${def[i].patientName}',color: Colors.black,weight: FontWeight.w600,),
-                              Divider(color: Colors.grey,thickness: 1,
+                              CustomText(
+                                text:
+                                    '${def[i].date.toString().substring(0, def[i].date.toString().indexOf(' '))}',
+                                color: Colors.grey,
+                                fontSize: 9.sp,
                               ),
-                              SizedBox(height: 0.5.h,),
+                              SizedBox(
+                                height: 1.h,
+                              ),
+                              CustomText(
+                                text: '${def[i].patientName}',
+                                color: Colors.black,
+                                weight: FontWeight.w600,
+                              ),
+                              Divider(
+                                color: Colors.grey,
+                                thickness: 1,
+                              ),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
                               CustomText(text: 'Symptoms: ${def[i].symtomps}'),
-                              SizedBox(height: 0.5.h,),
-                              CustomText(text: 'Prescription: ${def[i].prescriptions}'),
-                              SizedBox(height: 0.5.h,),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
+                              CustomText(
+                                  text:
+                                      'Prescription: ${def[i].prescriptions}'),
+                              SizedBox(
+                                height: 0.5.h,
+                              ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  CustomText(text: 'Date of Birth: ${def[i].dob}'),
-                                  Icon(  def[i].sex == 'Male' ?Icons.male_outlined:Icons.female_outlined,
-                                      color: def[i].sex == 'Male' ? Colors.blue : Colors.pinkAccent
-                                  )
+                                  CustomText(
+                                      text: 'Date of Birth: ${def[i].dob}'),
+                                  Icon(
+                                      def[i].sex == 'Male'
+                                          ? Icons.male_outlined
+                                          : Icons.female_outlined,
+                                      color: def[i].sex == 'Male'
+                                          ? Colors.blue
+                                          : Colors.pinkAccent)
                                 ],
                               )
                             ],
@@ -91,10 +115,10 @@ class _MyReportsState extends State<MyReports> {
                       );
                     });
               }
-              if(state is ReportError){
-
-              }
-              return Center(child: CircularProgressIndicator.adaptive(),);
+              if (state is ReportError) {}
+              return Center(
+                child: CircularProgressIndicator.adaptive(),
+              );
             },
           ))
         ],

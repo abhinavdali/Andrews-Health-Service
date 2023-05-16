@@ -9,6 +9,7 @@ import '../../Extracted Widgets/const.dart';
 import '../../Extracted Widgets/custom_text.dart';
 import '../../Extracted Widgets/textfield.dart';
 import '../../Logic/Login_bloc/login_bloc.dart';
+import '../Forgot Password/verifyEmail.dart';
 import '../Screens/dashboard.dart';
 
 class Login extends StatelessWidget {
@@ -68,24 +69,32 @@ class Login extends StatelessWidget {
                 context: context,
                 builder: (builder) {
                   return AlertDialog(
-                    contentPadding: EdgeInsets.symmetric(vertical: 24,horizontal: 26),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 24, horizontal: 26),
                     content: Container(
                       height: 72,
                       width: 150,
                       child: Column(
                         children: [
-                          CustomText(text: 'Invalid Credentials',weight: FontWeight.w600,fontSize: 12.sp,),
+                          CustomText(
+                            text: 'Invalid Credentials',
+                            weight: FontWeight.w600,
+                            fontSize: 12.sp,
+                          ),
                           SizedBox(
                             height: 4.h,
                           ),
-
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.pop(context);
                             },
                             child: Container(
                               width: double.infinity,
-                              child: Center(child: CustomText(text: 'OK',color: Colors.blue,)),
+                              child: Center(
+                                  child: CustomText(
+                                text: 'OK',
+                                color: Colors.blue,
+                              )),
                             ),
                           )
                         ],
@@ -123,7 +132,7 @@ class Login extends StatelessWidget {
                         ),
                         CustomText(
                           text: 'Login',
-                          fontSize: 19.sp,
+                          fontSize: 16.sp,
                           weight: FontWeight.w800,
                         ),
                         SizedBox(
@@ -191,6 +200,22 @@ class Login extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return VerifyEmail();
+                                  }));
+                                },
+                                child: CustomText(text: 'Forgot Password?')),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
                             CustomText(
                               text: 'Haven\'t signed up yet? ',
                               color: Colors.grey[600],
@@ -209,7 +234,7 @@ class Login extends StatelessWidget {
                               ),
                             ),
                           ],
-                        )
+                        ),
                       ]),
                 ),
               ),
