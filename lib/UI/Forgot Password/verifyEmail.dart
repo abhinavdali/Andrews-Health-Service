@@ -68,7 +68,45 @@ class _VerifyEmailState extends State<VerifyEmail> {
           }
           if (state is VerifyEmailError) {
             Navigator.pop(context);
-            print('error');
+            showDialog(
+                barrierDismissible: false,
+                barrierColor: Colors.grey.withOpacity(0.2),
+                context: context,
+                builder: (builder) {
+                  return AlertDialog(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 24, horizontal: 26),
+                    content: Container(
+                      height: 72,
+                      width: 150,
+                      child: Column(
+                        children: [
+                          CustomText(
+                            text: state.message ?? 'Something went wrong',
+                            weight: FontWeight.w600,
+                            fontSize: 12.sp,
+                          ),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              child: Center(
+                                  child: CustomText(
+                                text: 'OK',
+                                color: Colors.blue,
+                              )),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                });
           }
         },
         child: Padding(

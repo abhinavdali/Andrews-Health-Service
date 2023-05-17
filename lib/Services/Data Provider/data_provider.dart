@@ -82,6 +82,46 @@ class DataProvider {
     return response;
   }
 
+  Future<http.Response> verifyOTP({required String email, required int OTP}) {
+    var response = http
+        .post(Uri.parse('$url/api/users/verify-otp'),
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(<String, dynamic>{"email": email, "otp": OTP}))
+        .timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
+  Future<http.Response> resetPass(
+      {required String email, required String password}) {
+    var response = http
+        .post(Uri.parse('$url/api/users/reset-password'),
+            headers: <String, String>{
+              'Content-Type': 'application/json',
+            },
+            body: jsonEncode(
+                <String, dynamic>{"email": email, "password": password}))
+        .timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        // Time has run out, do what you wanted to do.
+        return http.Response(
+            'Error', 400); // Request Timeout response status code
+      },
+    );
+
+    return response;
+  }
+
   Future<http.Response> getPharmacy() {
     var response = http.get(
       Uri.parse('$url/api/pharmacy'),

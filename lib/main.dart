@@ -4,8 +4,10 @@ import 'package:fyp/Logic/Designation_bloc/designation_bloc.dart';
 import 'package:fyp/Logic/FavList_bloc/fav_list_bloc.dart';
 import 'package:fyp/Logic/Fav_bloc/fav_bloc.dart';
 import 'package:fyp/Logic/Feedback_bloc/feedback_bloc.dart';
+import 'package:fyp/Logic/OTP_bloc/bloc/otp_bloc.dart';
 import 'package:fyp/Logic/Pharmacy_bloc/bloc/pharmacy_bloc.dart';
 import 'package:fyp/Logic/Report_bloc/report_bloc.dart';
+import 'package:fyp/Logic/Reset_bloc/bloc/reset_bloc.dart';
 import 'package:fyp/Logic/Services_bloc/services_bloc.dart';
 import 'package:fyp/Logic/SignUp_bloc/sign_up_bloc.dart';
 import 'package:fyp/Logic/VerifyEmail_bloc/bloc/verify_email_bloc.dart';
@@ -90,6 +92,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<VerifyEmailBloc>(
           create: (BuildContext context) => VerifyEmailBloc(),
+        ),
+        BlocProvider<OtpBloc>(
+          create: (BuildContext context) => OtpBloc(),
+        ),
+        BlocProvider<ResetBloc>(
+          create: (BuildContext context) => ResetBloc(),
         ),
       ],
       child: Sizer(builder: (context, orientation, deviceType) {
