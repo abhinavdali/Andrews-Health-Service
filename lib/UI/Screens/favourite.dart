@@ -54,7 +54,7 @@ class _FavouritesState extends State<Favourites> {
             }
           },
           child:
-          BlocBuilder<DoctorBloc, DoctorState>(builder: (context, state) {
+              BlocBuilder<DoctorBloc, DoctorState>(builder: (context, state) {
             if (state is DoctorInitial) {
               print('init');
             } else if (state is DoctorLoading) {
@@ -67,24 +67,24 @@ class _FavouritesState extends State<Favourites> {
                 child: ListView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                     shrinkWrap: true,
-                    itemCount: def.length,
+                    itemCount: favDocID.isEmpty ? 1 : def.length,
                     itemBuilder: (context, index) {
                       print('sda${def[index].id}');
 
-                      if(favDocID.contains(def[index].id)){
+                      if (favDocID.contains(def[index].id)) {
                         return GestureDetector(
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return DoctorProfile(
-                                    name: def[index].name,
-                                    department:def[index].department ,
-                                    education: def[index].education,
-                                    designation: def[index].designation,
-                                    available: def[index].timing,
-                                    description: def[index].description,
-                                  );
-                                }));
+                              return DoctorProfile(
+                                name: def[index].name,
+                                department: def[index].department,
+                                education: def[index].education,
+                                designation: def[index].designation,
+                                available: def[index].timing,
+                                description: def[index].description,
+                              );
+                            }));
                           },
                           child: Container(
                             margin: EdgeInsets.only(bottom: 16),
@@ -127,9 +127,9 @@ class _FavouritesState extends State<Favourites> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         children: [
                                           CustomText(
                                             text: 'Dr. ${def[index].name}',
@@ -138,7 +138,7 @@ class _FavouritesState extends State<Favourites> {
                                           ),
                                           CustomText(
                                               text:
-                                              '${def[index].designation} • ${def[index].education}'),
+                                                  '${def[index].designation} • ${def[index].education}'),
                                           SizedBox(
                                             height: 1.h,
                                           ),
@@ -169,25 +169,31 @@ class _FavouritesState extends State<Favourites> {
                                   ],
                                 ),
                                 Padding(
-                                    padding:
-                                    const EdgeInsets.only(top: 8.0, right: 8),
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, right: 8),
                                     child: GestureDetector(
                                         onTap: () {
-
                                           BlocProvider.of<FavBloc>(context)
                                               .add(OnFav(id: def[index].id));
-                                          Future.delayed(Duration(milliseconds: 600,),callFav);
+                                          Future.delayed(
+                                              Duration(
+                                                milliseconds: 600,
+                                              ),
+                                              callFav);
                                         },
                                         child: favDocID.contains(def[index].id)
                                             ? Icon(Icons.favorite)
-                                            : Icon(Icons.favorite_border_outlined))
-                                )
+                                            : Icon(Icons
+                                                .favorite_border_outlined)))
                               ],
                             ),
                           ),
                         );
-                      }else{
-                        return Container();
+                      } else {
+                        return Center(
+                          child: CustomText(
+                              text: 'You have no favourite doctors.'),
+                        );
                       }
                     }),
               );

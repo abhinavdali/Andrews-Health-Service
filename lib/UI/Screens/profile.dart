@@ -57,7 +57,7 @@ class _ProfileState extends State<Profile> {
           color: Colors.grey,
         ),
         SizedBox(
-          height: 1.h,
+          height: 1.5.h,
         ),
         GestureDetector(
           onTap: () {
@@ -71,16 +71,8 @@ class _ProfileState extends State<Profile> {
             widget: SizedBox(),
           ),
         ),
-        ProfileRow(
-          icon: Icons.fingerprint,
-          title: 'Setup Fingerprint',
-          widget: Switch(
-              value: isSwitch,
-              onChanged: (value) {
-                setState(() {
-                  isSwitch = !isSwitch;
-                });
-              }),
+        SizedBox(
+          height: 1.5.h,
         ),
         GestureDetector(
           onTap: () {
@@ -95,7 +87,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         SizedBox(
-          height: 1.h,
+          height: 1.5.h,
         ),
         GestureDetector(
           onTap: () {
@@ -142,7 +134,8 @@ class _ProfileState extends State<Profile> {
                                   GestureDetector(
                                     onTap: () async {
                                       UserPreferences.logout();
-                                      var sp =  await SharedPreferences.getInstance();
+                                      var sp =
+                                          await SharedPreferences.getInstance();
                                       sp.remove('NAME');
                                       sp.remove('EMAIL');
                                       sp.remove('PHONE');
@@ -190,8 +183,13 @@ class ProfileRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [shadow]),
+      padding: EdgeInsets.all(12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -206,7 +204,7 @@ class ProfileRow extends StatelessWidget {
               ),
               CustomText(
                 text: title,
-                fontSize: 14.sp,
+                fontSize: 11.sp,
                 color: islogout == true ? Colors.red : Colors.black,
                 weight: FontWeight.w400,
               ),
