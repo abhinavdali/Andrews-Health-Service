@@ -47,6 +47,7 @@ class _MyReportsState extends State<MyReports> {
               }
               if (state is ReportLoaded) {
                 var def = state.reportModel.report;
+                if(def.isNotEmpty){
                 return ListView.builder(
                     itemCount: def.length,
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -113,7 +114,9 @@ class _MyReportsState extends State<MyReports> {
                           ),
                         ),
                       );
-                    });
+                    });}else{
+                  return Center(child: CustomText(text: 'There are no reports yet.',),);
+                }
               }
               if (state is ReportError) {}
               return Center(

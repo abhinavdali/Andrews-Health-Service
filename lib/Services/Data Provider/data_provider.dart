@@ -5,7 +5,7 @@ import 'package:fyp/UI/Forgot%20Password/verifyEmail.dart';
 import 'package:http/http.dart' as http;
 
 class DataProvider {
-  var url = 'https://andrews-health-services-production.up.railway.app';
+  var url = 'https://andrew-api-production.up.railway.app';
   var token = UserPreferences.getToken();
 
   Future<http.Response> login(
