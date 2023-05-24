@@ -598,7 +598,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                               city: cityController.text,
                               address: addressController.text,
                               doctorName: defDoctor,
-                              designation: designationController.text,
+                              designation:defDesignation,
                               instructions: instController.text,
                               appointmentDate: appointmentController.text));
                     }

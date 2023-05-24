@@ -100,7 +100,7 @@ class _MyReportsState extends State<MyReports> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomText(
-                                      text: 'Date of Birth: ${def[i].dob}'),
+                                      text: 'Date of Birth: ${def[i].date}'),
                                   Icon(
                                       def[i].sex == 'Male'
                                           ? Icons.male_outlined

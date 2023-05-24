@@ -27,7 +27,6 @@ class ReportModel {
 class Report {
   String id;
   String patientName;
-  DateTime dob;
   String age;
   String sex;
   String symtomps;
@@ -39,7 +38,6 @@ class Report {
   Report({
     required this.id,
     required this.patientName,
-    required this.dob,
     required this.age,
     required this.sex,
     required this.symtomps,
@@ -52,7 +50,6 @@ class Report {
   factory Report.fromJson(Map<String, dynamic> json) => Report(
     id: json["_id"],
     patientName: json["patientName"],
-    dob: DateTime.parse(json["DOB"]),
     age: json["age"],
     sex: json["sex"],
     symtomps: json["symtomps"],
@@ -65,7 +62,6 @@ class Report {
   Map<String, dynamic> toJson() => {
     "_id": id,
     "patientName": patientName,
-    "DOB": dob.toIso8601String(),
     "age": age,
     "sex": sex,
     "symtomps": symtomps,
