@@ -189,11 +189,12 @@ class _FavouritesState extends State<Favourites> {
                             ),
                           ),
                         );
-                      } else {
-                        return Center(
-                          child: CustomText(
-                              text: 'You have no favourite doctors.'),
-                        );
+                      }
+                      if(favDocID.isEmpty){
+                        return Center(child: CustomText(text: 'You have no favourites',),);
+                      }
+                      else {
+                        return Container();
                       }
                     }),
               );
