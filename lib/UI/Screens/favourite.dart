@@ -132,7 +132,7 @@ class _FavouritesState extends State<Favourites> {
                                             MainAxisAlignment.start,
                                         children: [
                                           CustomText(
-                                            text: 'Dr. ${def[index].name}',
+                                            text: '${def[index].name}',
                                             weight: FontWeight.w600,
                                             fontSize: 13.sp,
                                           ),
