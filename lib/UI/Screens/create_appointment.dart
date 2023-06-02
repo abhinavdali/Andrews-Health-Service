@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fyp/Extracted%20Widgets/const.dart';
 import 'package:fyp/Extracted%20Widgets/textfield.dart';
+import 'package:fyp/Logic/Appointment_bloc/bloc/appointment_bloc.dart';
 import 'package:fyp/Logic/CreateAppointment_bloc/bloc/create_appointment_bloc.dart';
 import 'package:fyp/Logic/Designation_bloc/designation_bloc.dart';
 import 'package:fyp/Logic/Doctor_bloc/bloc/doctor_bloc.dart';
 import 'package:fyp/Services/Model/designation_model.dart';
+import 'package:fyp/UI/Screens/appointment.dart';
 import 'package:fyp/UI/loginandsignup/login.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sizer/sizer.dart';
@@ -110,7 +112,8 @@ class _CreateAppointmentState extends State<CreateAppointment> {
             Navigator.pop(context);
             showSnackBar(context, 'Success', Colors.green, Icons.check,
                 'Appointment created successfully');
-            Navigator.pop(context);
+            Navigator.pop(context,()
+                {BlocProvider.of<AppointmentBloc>(context).add(OnAppointmentLoad());});
           } else if (state is CreateAppointmentError) {
             print('error');
             Navigator.pop(context);
@@ -588,6 +591,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                   color: Colors.green,
                   onTap: () {
                     print(genderController.text);
+                    print(defDoctor);
                     if (_formKey.currentState!.validate()) {
                       BlocProvider.of<CreateAppointmentBloc>(context).add(
                           OnCreateAppointment(
