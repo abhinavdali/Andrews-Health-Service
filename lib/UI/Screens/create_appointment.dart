@@ -55,10 +55,8 @@ class _CreateAppointmentState extends State<CreateAppointment> {
       environment: ESewaConfiguration.ENVIRONMENT_TEST,
     );
     _esewaPnp = ESewaPnp(configuration: _configuration!);
-    widget.name != null ? doctorController.text = widget.name : '';
-    widget.designation != null
-        ? designationController.text = widget.designation
-        : '';
+    widget.name != null ? defDoctor = widget.name : '';
+    widget.designation != null ? defDesignation = widget.designation : '';
   }
 
   String? defDoctor = 'Doctor Name';
@@ -112,8 +110,10 @@ class _CreateAppointmentState extends State<CreateAppointment> {
             Navigator.pop(context);
             showSnackBar(context, 'Success', Colors.green, Icons.check,
                 'Appointment created successfully');
-            Navigator.pop(context,()
-                {BlocProvider.of<AppointmentBloc>(context).add(OnAppointmentLoad());});
+            Navigator.pop(context, () {
+              BlocProvider.of<AppointmentBloc>(context)
+                  .add(OnAppointmentLoad());
+            });
           } else if (state is CreateAppointmentError) {
             print('error');
             Navigator.pop(context);
@@ -325,15 +325,15 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                               var list = def.map((e) => e.name).toList();
                               return Container(
                                 height:
-                                MediaQuery.of(context).size.height * 0.55,
+                                    MediaQuery.of(context).size.height * 0.55,
                                 padding: const EdgeInsets.all(16),
                                 child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           CustomText(
                                             text: 'Choose a Designation',
@@ -356,14 +356,15 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                                             shrinkWrap: true,
                                             padding: const EdgeInsets.all(0),
                                             physics:
-                                            const ClampingScrollPhysics(),
+                                                const ClampingScrollPhysics(),
                                             itemCount: list.length,
                                             itemBuilder: (context, i) {
                                               return GestureDetector(
                                                 onTap: () {
                                                   print('tapped');
                                                   setState(() {
-                                                    designationController.text ==
+                                                    designationController
+                                                            .text ==
                                                         list[i];
 
                                                     Navigator.pop(
@@ -374,18 +375,18 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                                                   margin: const EdgeInsets.only(
                                                       top: 10),
                                                   padding: const EdgeInsets
-                                                      .symmetric(
+                                                          .symmetric(
                                                       horizontal: 16,
                                                       vertical: 12),
                                                   decoration: BoxDecoration(
                                                     color:
-                                                    const Color(0xffEDEDED),
+                                                        const Color(0xffEDEDED),
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        8),
+                                                        BorderRadius.circular(
+                                                            8),
                                                   ),
                                                   child:
-                                                  CustomText(text: list[i]),
+                                                      CustomText(text: list[i]),
                                                 ),
                                               );
                                             }),
@@ -421,9 +422,9 @@ class _CreateAppointmentState extends State<CreateAppointment> {
               ),
               CustomTextField(
                 onPress: () {
-                  if(defDesignation == 'Designation'){
-                    print ('No Designation');
-                  }else{
+                  if (defDesignation == 'Designation') {
+                    print('No Designation');
+                  } else {
                     showMaterialModalBottomSheet(
                         context: context,
                         expand: false,
@@ -433,20 +434,21 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                               if (state is DoctorLoaded) {
                                 var def = state.doctorModel.doctors;
                                 var list = def.map((e) => e.name).toList();
-                                var desList = def.map((e) => e.designation).toList();
+                                var desList =
+                                    def.map((e) => e.designation).toList();
                                 print(desList);
                                 print(defDesignation);
                                 return Container(
                                   height:
-                                  MediaQuery.of(context).size.height * 0.55,
+                                      MediaQuery.of(context).size.height * 0.55,
                                   padding: const EdgeInsets.all(16),
                                   child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             CustomText(
                                               text: 'Choose a Doctor',
@@ -469,7 +471,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                                               shrinkWrap: true,
                                               padding: const EdgeInsets.all(0),
                                               physics:
-                                              const ClampingScrollPhysics(),
+                                                  const ClampingScrollPhysics(),
                                               itemCount: list.length,
                                               itemBuilder: (context, i) {
                                                 return GestureDetector(
@@ -482,24 +484,32 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                                                           context, list[i]);
                                                     });
                                                   },
-                                                  child:  desList[i] == defDesignation?Container(
-                                                    margin: const EdgeInsets.only(
-                                                        top: 10),
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 12),
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                      const Color(0xffEDEDED),
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          8),
-                                                    ),
-                                                    child:
-
-                                                    CustomText(text: list[i]),
-                                                  ):Container(),
+                                                  child: desList[i] ==
+                                                          defDesignation
+                                                      ? Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  top: 10),
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      16,
+                                                                  vertical: 12),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: const Color(
+                                                                0xffEDEDED),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8),
+                                                          ),
+                                                          child: CustomText(
+                                                              text: list[i]),
+                                                        )
+                                                      : Container(),
                                                 );
                                               }),
                                         )
@@ -507,7 +517,8 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                                 );
                               }
                               return Container(
-                                height: MediaQuery.of(context).size.height * 0.55,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.55,
                                 child: const Center(
                                   child: CircularProgressIndicator.adaptive(),
                                 ),
@@ -516,8 +527,9 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                           );
                         }).then((value) {
                       setState(() {
-                        defDesignation == 'Designation'?defDoctor = 'Doctor Name':
-                        defDoctor = value ?? 'Doctor Name';
+                        defDesignation == 'Designation'
+                            ? defDoctor = 'Doctor Name'
+                            : defDoctor = value ?? 'Doctor Name';
                       });
                     });
                   }
@@ -602,7 +614,7 @@ class _CreateAppointmentState extends State<CreateAppointment> {
                               city: cityController.text,
                               address: addressController.text,
                               doctorName: defDoctor,
-                              designation:defDesignation,
+                              designation: defDesignation,
                               instructions: instController.text,
                               appointmentDate: appointmentController.text));
                     }

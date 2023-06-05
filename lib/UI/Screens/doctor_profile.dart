@@ -90,7 +90,7 @@ class _DoctorProfileState extends State<DoctorProfile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomText(
-                              text: 'Dr. ${widget.name}',
+                              text: '${widget.name}',
                               weight: FontWeight.w600,
                               fontSize: 12.sp,
                             ),
